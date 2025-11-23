@@ -1,0 +1,183 @@
+library(htmltools)
+library(arrayQualityMetrics)
+#library(DESeq)
+library(DESeq2)
+library(tidyr)
+library(genefilter)
+library(cowplot)
+library(readr)
+library(gplots)
+library(reshape2)
+library(plyr)
+library(dplyr)
+library(apeglm)
+library(IHW)
+library(pheatmap)
+library(vsn)
+library(ggplot2)
+library(ggpubr)
+library(ggtext)
+library(ape)
+library(vegan)
+library(RColorBrewer)
+library(stringr)
+library(KOGMWU)
+
+
+#Read in sample metadata
+setwd("C:/Users/anaca/OneDrive/Escritorio/VS Nuevo O.arbuscula simbiosis/My O.arbuscula")
+coldata<-read.table("data/Samp_data.txt", header=TRUE)
+rownames(coldata)<-coldata$Samp
+coldata<-coldata[,2:3]
+
+OCAA<-read.table("data/OCAA_coral_sam.counts")
+OCBA<-read.table("data/OCBA_coral_sam.counts")
+OCCA<-read.table("data/OCCA_coral_sam.counts")
+OCDA<-read.table("data/OCDA_coral_sam.counts")
+OCFA<-read.table("data/OCFA_coral_sam.counts")
+
+OCAS<-read.table("data/OCAS_coral_sam.counts")
+OCBS<-read.table("data/OCBS_coral_sam.counts")
+OCCS<-read.table("data/OCCS_coral_sam.counts")
+OCDS<-read.table("data/OCDS_coral_sam.counts")
+OCFS<-read.table("data/OCFS_coral_sam.counts")
+
+cts<-full_join(OCAA,OCBA, by="V1") # full_join merges all the data even if there's a gene found in A and that isn't in B and vice versa, missing data are given NA) 
+cts<-full_join(cts,OCCA, by="V1")
+cts<-full_join(cts,OCDA, by="V1")
+cts<-full_join(cts,OCFA, by="V1")
+cts<-full_join(cts,OCAS, by="V1")
+cts<-full_join(cts,OCBS, by="V1")
+cts<-full_join(cts,OCCS, by="V1")
+cts<-full_join(cts,OCDS, by="V1")
+cts<-full_join(cts,OCFS, by="V1")
+
+#Fix Column headers 
+colnames(cts)<-c("contig","OCAA", "OCBA", "OCCA", "OCDA", "OCFA", "OCAS", "OCBS", "OCCS", "OCDS", "OCFS")
+
+#Make NAs zeros
+cts[is.na(cts)]<-0
+
+#Read in gene annotations
+# Los autores llaman al archivo "coral_gene_names.tab" pero no se encuentra en el repositorio de GitHub.
+# así que, descargamos el transcriptoma desde https://sites.bu.edu/davieslab/data-code/ 
+# Dichos archivos se encuentran en carpeta O_arbuscula_transcriptome.
+
+# La primera columna es el identificador del contig (“contiguous sequence”), isogroup o transcrito (por ejemplo, “comp100001_c0_seq1”).
+# La segunda columna es el nombre del gen anotado (por ejemplo, “glutamine synthetase”)
+
+
+gg=read.delim("O_arbuscula_isogroup_to_genename.tab",sep="\t", header=FALSE)
+colnames(gg)<-c("contig","genename")
+
+# removing A. thaliana genes from counts
+cts<-left_join(cts,gg, by="contig")
+cts<-cts[grep("thaliana", cts$genename, invert=TRUE),]
+View(cts)
+
+#Name columns and remove gene and genename column
+rownames(cts)<-cts$contig
+cts<-cts[,2:11]
+
+# Verificar que todo está funcionando
+View(cts)
+
+##########################################################################################
+
+#En el siguiente paso, hacen un analisis de calidad con DESeq 1.
+
+# 1. Cargar los paquetes necesarios
+library(DESeq2)
+library(arrayQualityMetrics)
+library(Biobase) # Necesitas este paquete para crear el objeto ExpressionSet
+
+## Running DESeq2 
+dds<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ Genet + SymbiontState)
+
+#Si se cambia el orden de los factores en el diseño, los resultados de la comparación cambiarán. 
+# podemos probar con: design=~SymbiontState+Genet  o  design=~SymbiontState (sin tener en cuenta el genotipo)
+
+# pre-filtering to remove low count genes 
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+
+ddsMF<-DESeq2::DESeq(dds) #desarrollo lit de DESeq2
+resMF<-results(ddsMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
+resMF #DataFrame with 25428 rows and 6 columns
+
+summary(resMF) #intentar entender este resultado
+# how many adjusted p values were less than 0.1
+sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
+# standard p value less that 0.05
+sum(resMF$pvalue<0.05, na.rm=TRUE) 
+conds05<-filter(as.data.frame(resMF), pvalue<0.05) # 1423 (this will be relevant for GOMWU later) --> a nosotras nos da 1453
+
+write.table(resMF, file="./deseq2/Sym_vs_Apo_collapsed.txt", quote=F, sep="\t")
+valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
+head(valState)
+colnames(valState)=c("pval.state", "padj.state")
+rownames(valState)<-rownames(resMF)
+
+# transform the data for plotting 
+rlogMF=rlogTransformation(dds, blind=TRUE) 
+rld=assay(rlogMF)
+colnames(rld)<-paste(coldata$Genet, coldata$SymbiontState, sep="_")
+
+rldpvals=cbind(rld,valState)
+head(rldpvals)
+dim(rldpvals)
+# [1] 25094    12
+table(complete.cases(rldpvals))
+# FALSE  TRUE 
+# 487 24607 
+# that's the 487 low count genes so all good
+
+#write.csv(rldpvals, "./deseq2/April2020_RLDandPVALS_State_noE_collapsed_mapped.csv", quote=F)
+
+rld_data<-as.data.frame(rldpvals)
+View(rld_data)
+
+##### Heat map of degs0 
+adjpval=0.10 # FDR cutoff
+conds=filter(rld_data, padj.state<adjpval)
+
+# remove pval data 
+degs=conds[,1:10]
+degs$contig<-rownames(degs)
+degs<-left_join(degs, gg, by="contig") # add in genenames from annotations file
+#write.table(degs, file="deg_list_exp.txt", quote=FALSE, row.names = FALSE, sep = "\t")
+#rename NAs to unknowns
+View(degs)
+View(gg)
+
+degs$genename = factor(degs$genename, levels=c(levels(degs$genename), "unknown"))
+degs$genename[is.na(degs$genename)]<-"unknown"
+#get rid of species designation on the genename 
+degs$genename<-sub("\\..*", "", degs$genename)
+genets<-rep(c("A","B", "C", "D", "F"), 2)
+
+degs_plot<-filter(degs, genename!="unknown")
+
+View(degs_plot)
+
+
+ccol<-rev(colorRampPalette(brewer.pal(n=11, name="BrBG"))(80))
+ccol2<-rev(colorRampPalette(brewer.pal(n=11, name="RdYlBu"))(50))
+
+pheatmap(degs_plot[,1:10], show_rownames=T, labels_row=degs_plot$genename,
+         show_colnams = T, angle_col= "0",
+         cellheight = 6, cellwidth = 8, fontsize_row=5, cluster_cols=T, scale='row', fontsize_col=8,
+         cluster_rows = T, color=ccol2, cutree_rows = 2, cutree_cols = 2, labels_col = genets,
+         treeheight_col = 10, treeheight_row = 10, legend=T,
+         filename="./figures/heatmap_DEGs_annotonly.png", width=8, height=15)
+
+## heat map of only glutamine-associated DEGs 
+
+glut_degs<-droplevels(as.data.frame(degs[grepl("glut", degs$genename, ignore.case = TRUE),]))
+pheatmap(glut_degs[,1:10], 
+         show_rownames=T, labels_row=glut_degs$genename,fontsize_row=5, scale='row',cluster_rows = T, 
+         show_colnams = T, angle_col= "0",cluster_cols=T, fontsize_col=8, labels_col = genets,
+         cellheight = 6, cellwidth = 8,  
+         color=ccol, cutree_rows = 2, cutree_cols = 2, 
+         treeheight_col = 5, treeheight_row = 5, legend=T,
+         filename="./figures/glut_DEGs.png", width=5, height=5)
