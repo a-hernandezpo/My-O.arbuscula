@@ -109,6 +109,7 @@ summary(resMF) #resume el resultado de la expresión diferencial de genes
 ######
 results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
 plotMA(resMF, main="Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs (¿Cómo se lee?)
+dgs <- plotMA(resMF, main="Sym vs Apo", ylim=c(-5,5))
 ######
 
 
@@ -150,11 +151,15 @@ conds=filter(rld_data, padj.state<adjpval)
 # remove pval data 
 degs=conds[,1:10]
 degs$contig<-rownames(degs)
+gg$contig <- gsub("isogroup", "", gg$contig)
 degs<-left_join(degs, gg, by="contig") # add in genenames from annotations file
 #write.table(degs, file="deg_list_exp.txt", quote=FALSE, row.names = FALSE, sep = "\t")
 #rename NAs to unknowns
 View(degs)
 View(gg)
+dim(degs)
+dim(gg)
+
 
 degs$genename = factor(degs$genename, levels=c(levels(degs$genename), "unknown"))
 degs$genename[is.na(degs$genename)]<-"unknown"
