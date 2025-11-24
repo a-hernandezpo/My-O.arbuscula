@@ -1,5 +1,3 @@
-#Buenas
-
 library(htmltools)
 library(arrayQualityMetrics)
 #library(DESeq)
@@ -75,7 +73,6 @@ colnames(gg)<-c("contig","genename")
 # removing A. thaliana genes from counts
 cts<-left_join(cts,gg, by="contig")
 cts<-cts[grep("thaliana", cts$genename, invert=TRUE),]
-View(cts)
 
 #Name columns and remove gene and genename column
 rownames(cts)<-cts$contig
@@ -114,7 +111,7 @@ sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
 sum(resMF$pvalue<0.05, na.rm=TRUE) 
 conds05<-filter(as.data.frame(resMF), pvalue<0.05) # 1423 (this will be relevant for GOMWU later) --> a nosotras nos da 1453
 
-write.table(resMF, file="./deseq2/Sym_vs_Apo_collapsed.txt", quote=F, sep="\t")
+write.table(resMF, file="Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
 valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
 head(valState)
 colnames(valState)=c("pval.state", "padj.state")
