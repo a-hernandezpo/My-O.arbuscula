@@ -104,7 +104,14 @@ ddsMF<-DESeq2::DESeq(dds) #desarrollo lit de DESeq2
 resMF<-results(ddsMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
 resMF #DataFrame with 25428 rows and 6 columns
 
-summary(resMF) #intentar entender este resultado
+summary(resMF) #resume el resultado de la expresión diferencial de genes
+
+######
+results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
+plotMA(resMF, main="Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs (¿Cómo se lee?)
+######
+
+
 # how many adjusted p values were less than 0.1
 sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
 # standard p value less that 0.05
