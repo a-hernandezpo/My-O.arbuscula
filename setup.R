@@ -80,4 +80,4 @@ rownames(cts)<-cts$contig
 cts<-cts[,2:11]
 
 # Verificar que todo está funcionando
-View(cts)
+#View(cts)

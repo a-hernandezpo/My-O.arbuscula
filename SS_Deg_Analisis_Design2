@@ -1,0 +1,109 @@
+source("setup.R") #este comando permite acelerar la corrida del código inicial
+
+## Running DESeq2 
+ddss<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ SymbiontState) #(sin tener en cuenta el genotipo)
+
+#Si se cambia el orden de los factores en el diseño, los resultados de la comparación cambiarán. 
+
+# pre-filtering to remove low count genes 
+keep <- rowSums(counts(ddss)) >= 10
+ddss <- ddss[keep,]
+
+ddssMF<-DESeq2::DESeq(ddss) #desarrollo lit de DESeq2
+ressMF<-results(ddssMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
+ressMF #DataFrame with 25428 rows and 6 columns
+
+summary(ressMF) #resume el resultado de la expresión diferencial de genes
+
+# how many adjusted p values were less than 0.1
+sum(ressMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
+# standard p value less that 0.05
+sum(ressMF$pvalue<0.05, na.rm=TRUE) 
+conds05<-filter(as.data.frame(ressMF), pvalue<0.05) # 1423 (this will be relevant for GOMWU later) --> a nosotras nos da 1453
+
+write.table(ressMF, file="SS_Sym_vs_Apo_collapssed.txt", sep="\t", quote=F)
+valSstate=cbind(ressMF$pvalue, ressMF$padj) #adjusted p values
+head(valSstate)
+colnames(valSstate)=c("pval.state", "padj.state")
+rownames(valSstate)<-rownames(ressMF)
+
+
+
+# transform the data for plotting 
+rlogMF=rlogTransformation(ddss, blind=TRUE) 
+rld=assay(rlogMF)
+coldatass <- coldata
+colnames(rld)<-paste(coldatass$Genet, coldatass$SymbiontState, sep="_")
+
+rldpvalss=cbind(rld,valSstate)
+#head(rldpvals)
+#dim(rldpvals)
+
+table(complete.cases(rldpvalss))
+
+rld_datass<-as.data.frame(rldpvalss)
+#View(rld_data)
+
+##### Heat map of degs0 
+adjpval=0.10 # FDR cutoff
+condss=filter(rld_datass, padj.state<adjpval)
+
+# remove pval data 
+degss=condss[,1:10]
+degss$contig<-rownames(degss)
+gg$contig <- gsub("isogroup", "", gg$contig)
+degss<-left_join(degss, gg, by="contig") # add in genenames from annotations file
+degss$genename<-sub("\\..*", "", degss$genename)
+degss$genename <- sub("OS=.*$", "", degss$genename) # quitar info extra de genename
+genetss<-rep(c("A","B", "C", "D", "F"), 2)
+
+degss$genename[is.na(degss$genename)]<-"unknown" #NA to "unknown"
+
+View(degss)
+dim(degss)
+#Hay 201 filas y solo 60 NA.
+
+degss$genename <- as.factor(degss$genename)
+levels(degss$genename)  
+#Hay 140 niveles de genename (140 genes anotados diferentes)
+
+
+degss_plot<-filter(degss, genename!="unknown")
+View(degss_plot)
+
+
+
+###PLOTS###
+#plotMA
+results(ddssMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
+plotMA(ressMF, main="SS_plotMA Sym vs Apo", ylim=c(-5,5)) #DEBERÍA verse gráficamente
+
+#Volcano plot:
+# Convertir a data frame
+df_volcss <- as.data.frame(ressMF)
+df_volcss$gene <- rownames(df_volcss)
+
+# Eliminar NA en padj
+df_volcss <- df_volcss[complete.cases(df_volcss$padj), ]
+
+# Crear columna de significancia
+df_volcss$threshold <- "NS"
+df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange > 1] <- "Up"
+df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange < -1] <- "Down"
+
+# Volcano plot
+ggplot(df_volcss, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
+    geom_point(alpha = 0.6) +
+    scale_color_manual(values = c("Down"="blue", "Up"="red", "NS"="grey")) +
+    theme_minimal() +
+    xlab("log2 Fold Change") +
+    ylab("-log10 adjusted p-value") +
+    ggtitle("Volcano plot ss: Sym vs Apo")
+
+ggsave("./SS figures/SS Volcano _Sym_vs_Apo.png", width = 7, height = 7, dpi = 300)
+
+#######
+
+
+
+source("SS_CreatePlots.R") #llama al script para crear los gráficos.

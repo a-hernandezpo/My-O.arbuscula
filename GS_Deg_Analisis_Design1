@@ -16,38 +16,6 @@ resMF #DataFrame with 25428 rows and 6 columns
 
 summary(resMF) #resume el resultado de la expresión diferencial de genes
 
-###PLOTS###
-#plotMA
-results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
-plotMA(resMF, main="Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs (¿Cómo se lee?)
-dgs <- plotMA(resMF, main="Sym vs Apo", ylim=c(-5,5))
-
-#Volcano plot:
-# Convertir a data frame
-df_volc <- as.data.frame(resMF)
-df_volc$gene <- rownames(df_volc)
-
-# Eliminar NA en padj
-df_volc <- df_volc[complete.cases(df_volc$padj), ]
-
-# Crear columna de significancia
-df_volc$threshold <- "NS"
-df_volc$threshold[df_volc$padj < 0.05 & df_volc$log2FoldChange > 1] <- "Up"
-df_volc$threshold[df_volc$padj < 0.05 & df_volc$log2FoldChange < -1] <- "Down"
-
-# Volcano plot
-ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
-    geom_point(alpha = 0.6) +
-    scale_color_manual(values = c("Down"="blue", "Up"="red", "NS"="grey")) +
-    theme_minimal() +
-    xlab("log2 Fold Change") +
-    ylab("-log10 adjusted p-value") +
-    ggtitle("Volcano plot: Sym vs Apo")
-
-ggsave("./figures/volcano_Sym_vs_Apo.png", width = 7, height = 7, dpi = 300)
-
-#######
-
 # how many adjusted p values were less than 0.1
 sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
 # standard p value less that 0.05
@@ -59,6 +27,8 @@ valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
 head(valState)
 colnames(valState)=c("pval.state", "padj.state")
 rownames(valState)<-rownames(resMF)
+
+
 
 # transform the data for plotting 
 rlogMF=rlogTransformation(dds, blind=TRUE) 
@@ -100,5 +70,41 @@ levels(degs$genename)
 
 degs_plot<-filter(degs, genename!="unknown")
 View(degs_plot)
+
+
+
+###PLOTS###
+#plotMA
+results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
+plotMA(resMF, main="plotMA Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs
+png("figures/GS_MAplot_Sym_vs_Apo.png", width = 2000, height = 1800, res = 300)
+
+#Volcano plot:
+# Convertir a data frame
+df_volc <- as.data.frame(resMF)
+df_volc$gene <- rownames(df_volc)
+
+# Eliminar NA en padj
+df_volc <- df_volc[complete.cases(df_volc$padj), ]
+
+# Crear columna de significancia
+df_volc$threshold <- "NS"
+df_volc$threshold[df_volc$padj < 0.05 & df_volc$log2FoldChange > 1] <- "Up"
+df_volc$threshold[df_volc$padj < 0.05 & df_volc$log2FoldChange < -1] <- "Down"
+
+# Volcano plot
+ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
+    geom_point(alpha = 0.6) +
+    scale_color_manual(values = c("Down"="blue", "Up"="red", "NS"="grey")) +
+    theme_minimal() +
+    xlab("log2 Fold Change") +
+    ylab("-log10 adjusted p-value") +
+    ggtitle("GS_Volcano plot: Sym vs Apo")
+
+ggsave("./figures/GS Volcano_Sym_vs_Apo.png", width = 7, height = 7, dpi = 300)
+
+#######
+
+
 
 source("CreatePlots.R") #llama al script para crear los gráficos.
