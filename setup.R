@@ -28,6 +28,7 @@ library(KOGMWU)
 library(DESeq2)
 library(arrayQualityMetrics)
 library(Biobase)
+library(ggrepel)
 
 
 #Importing counts data and preparing for analyses

@@ -8,7 +8,7 @@ pheatmap(degs_plot[,1:10], show_rownames=T, labels_row=degs_plot$genename,
          cellheight = 6, cellwidth = 8, fontsize_row=5, cluster_cols=T, scale='row', fontsize_col=8,
          cluster_rows = T, color=ccol2, cutree_rows = 2, cutree_cols = 2, labels_col = genets,
          treeheight_col = 10, treeheight_row = 10, legend=T,
-         filename="./figures/heatmap_DEGs_annotonly.png", width=8, height=15)
+         filename="./GS figures/heatmap_DEGs_annotonly.png", width=8, height=15)
 
 ## heat map of only glutamine-associated DEGs 
 
@@ -19,7 +19,7 @@ pheatmap(glut_degs[,1:10],
          cellheight = 6, cellwidth = 8,  
          color=ccol, cutree_rows = 2, cutree_cols = 2, 
          treeheight_col = 5, treeheight_row = 5, legend=T,
-         filename="./figures/glut_DEGs.png", width=5, height=5)
+         filename="./GS figures/glut_DEGs.png", width=5, height=5)
 
 
 
@@ -31,7 +31,7 @@ pheatmap(sug_lip_degs[,1:10],
          cellheight = 6, cellwidth = 8,  
          color=ccol, cutree_rows = 2, cutree_cols = 2, 
          treeheight_col = 5, treeheight_row = 5, legend=T,
-         filename="./figures/sug_lip_DEGs.png", width=5, height=5)
+         filename="./GS figures/sug_lip_DEGs.png", width=5, height=5)
 
 
 # PCA's = Evaluar estadísticamente si Genet y SymbiontState explican la variación entre muestras observada en el PCA.
@@ -107,6 +107,6 @@ pca_degs_df<-cbind(pca_degs_df, coldata)
 
 ggarrange(a, b, ncol=2, nrow=1, common.legend = TRUE, legend = "bottom", labels="AUTO")+
   theme(plot.margin = margin(0,0,2,0))
-ggsave("./figures/Fig2_new.png", dpi=300, height=6, width=10, units="in")
+ggsave("./GS figures/Fig2_new.png", dpi=300, height=6, width=10, units="in")
 
 # nolint end: line_length_linter
