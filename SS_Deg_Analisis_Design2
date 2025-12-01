@@ -88,8 +88,8 @@ df_volcss <- df_volcss[complete.cases(df_volcss$padj), ]
 
 # Crear columna de significancia
 df_volcss$threshold <- "NS"
-df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange > 1] <- "Up"
-df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange < -1] <- "Down"
+df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange > 1.5] <- "Up"
+df_volcss$threshold[df_volcss$padj < 0.05 & df_volcss$log2FoldChange < -1.5] <- "Down"
 
 # Volcano plot
 ggplot(df_volcss, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +

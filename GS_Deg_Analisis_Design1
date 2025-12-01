@@ -7,14 +7,23 @@ dds<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~
 # podemos probar con: design=~SymbiontState+Genet  o  design=~SymbiontState (sin tener en cuenta el genotipo)
 
 # pre-filtering to remove low count genes 
+dim(dds) #25649
 keep <- rowSums(counts(dds)) >= 10
 dds <- dds[keep,]
+dim(dds) #25428
 
 ddsMF<-DESeq2::DESeq(dds) #desarrollo lit de DESeq2
 resMF<-results(ddsMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
 resMF #DataFrame with 25428 rows and 6 columns
 
 summary(resMF) #resume el resultado de la expresión diferencial de genes
+# out of 25428 with nonzero total read count
+# adjusted p-value < 0.1      umbral de significancia que estoy usando
+# LFC > 0 (up)       : 153, 0.6% Log2      Fold Change positivo (más expresión en la condición de interés vs control) # nolint: line_length_linter.
+# LFC < 0 (down)     : 48, 0.19%           Log2 Fold Change negativo (menos expresión)
+# outliers [1]       : 0, 0%
+# low counts [2]     : 0, 0%
+# (mean count < 1)     
 
 # how many adjusted p values were less than 0.1
 sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
