@@ -1,3 +1,5 @@
+# nolint start: line_length_linter
+
 ccol<-rev(colorRampPalette(brewer.pal(n=11, name="BrBG"))(80))
 ccol2<-rev(colorRampPalette(brewer.pal(n=11, name="RdYlBu"))(50))
 
@@ -31,3 +33,4 @@ pheatmap(sug_lip_degss[,1:10],
          treeheight_col = 5, treeheight_row = 5, legend=T,
          filename="./SS figures/SS sug_lip_DEGs.png", width=5, height=5)
 
+# nolint end: line_length_linter

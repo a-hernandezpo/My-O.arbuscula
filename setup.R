@@ -1,3 +1,5 @@
+# nolint start: line_length_linter
+
 library(htmltools)
 library(arrayQualityMetrics)
 #library(DESeq)
@@ -81,3 +83,5 @@ cts<-cts[,2:11]
 
 # Verificar que todo está funcionando
 #View(cts)
+
+# nolint end: line_length_linter

@@ -1,3 +1,4 @@
+# nolint start: line_length_linter
 
 ccol<-rev(colorRampPalette(brewer.pal(n=11, name="BrBG"))(80))
 ccol2<-rev(colorRampPalette(brewer.pal(n=11, name="RdYlBu"))(50))
@@ -107,3 +108,5 @@ pca_degs_df<-cbind(pca_degs_df, coldata)
 ggarrange(a, b, ncol=2, nrow=1, common.legend = TRUE, legend = "bottom", labels="AUTO")+
   theme(plot.margin = margin(0,0,2,0))
 ggsave("./figures/Fig2_new.png", dpi=300, height=6, width=10, units="in")
+
+# nolint end: line_length_linter

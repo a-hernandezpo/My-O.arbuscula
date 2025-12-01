@@ -1,3 +1,5 @@
+# nolint start: line_length_linter
+
 source("setup.R") #este comando permite acelerar la corrida del código inicial
 
 ## Running DESeq2 
@@ -107,3 +109,5 @@ ggsave("./SS figures/SS Volcano _Sym_vs_Apo.png", width = 7, height = 7, dpi = 3
 
 
 source("SS_CreatePlots.R") #llama al script para crear los gráficos.
+
+# nolint end: line_length_linter

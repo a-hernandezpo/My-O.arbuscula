@@ -1,6 +1,8 @@
+# nolint start: line_length_linter
+
 source("setup.R") #este comando permite acelerar la corrida del código inicial
 
-## Running DESeq2 
+## Running DESeq2
 dds<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ Genet + SymbiontState)
 
 #Si se cambia el orden de los factores en el diseño, los resultados de la comparación cambiarán. 
@@ -18,18 +20,19 @@ resMF #DataFrame with 25428 rows and 6 columns
 
 summary(resMF) #resume el resultado de la expresión diferencial de genes
 # out of 25428 with nonzero total read count
-# adjusted p-value < 0.1      umbral de significancia que estoy usando
+# adjusted p-value < 0.1                   umbral de significancia que estoy usando
 # LFC > 0 (up)       : 153, 0.6% Log2      Fold Change positivo (más expresión en la condición de interés vs control)
 # LFC < 0 (down)     : 48, 0.19%           Log2 Fold Change negativo (menos expresión)
 # outliers [1]       : 0, 0%
-# low counts [2]     : 0, 0%
-# (mean count < 1)     
+# low counts [2]     : 0, 0%               (mean count < 1)
+# 153 UP + 48 DOWN = 201 genes significativos
 
-# how many adjusted p values were less than 0.1
-sum(resMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
+
 # standard p value less that 0.05
-sum(resMF$pvalue<0.05, na.rm=TRUE) 
-conds05<-filter(as.data.frame(resMF), pvalue<0.05) # 1423 (this will be relevant for GOMWU later) --> a nosotras nos da 1453
+sum(resMF$pvalue<0.05, na.rm=TRUE) # 1453
+# how many adjusted p values were less than 0.1
+sum(resMF$padj<0.05, na.rm=TRUE) # si padj<0.05 = 163       si padj<0.1 = 201
+conds05<-filter(as.data.frame(resMF), pvalue<0.05) 
 
 write.table(resMF, file="Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
 valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
@@ -54,7 +57,7 @@ rld_data<-as.data.frame(rldpvals)
 #View(rld_data)
 
 ##### Heat map of degs0 
-adjpval=0.10 # FDR cutoff
+adjpval=0.05 # FDR cutoff
 conds=filter(rld_data, padj.state<adjpval)
 
 # remove pval data 
@@ -70,11 +73,13 @@ degs$genename[is.na(degs$genename)]<-"unknown" #NA to "unknown"
 
 View(degs)
 dim(degs)
-#Hay 201 filas y solo 60 NA.
+# Si padj<0.05 Hay 163 filas y 12 NA.
+# Si padj<0.1 Hay 201 filas y 60 NA.
 
 degs$genename <- as.factor(degs$genename)
 levels(degs$genename)  
-#Hay 140 niveles de genename (140 genes anotados diferentes)
+# Si padj<0.05 Hay Hay 99 niveles de genename 
+# Si padj<0.1 Hay 140 niveles de genename (140 genes anotados diferentes)
 
 
 degs_plot<-filter(degs, genename!="unknown")
@@ -84,9 +89,9 @@ View(degs_plot)
 
 ###PLOTS###
 #plotMA
-results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
-plotMA(resMF, main="plotMA Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs
-png("figures/GS_MAplot_Sym_vs_Apo.png", width = 2000, height = 1800, res = 300)
+#results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
+#plotMA(resMF, main="plotMA Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs
+#png("figures/GS_MAplot_Sym_vs_Apo.png", width = 2000, height = 1800, res = 300)
 
 #Volcano plot:
 # Convertir a data frame
@@ -117,3 +122,5 @@ ggsave("./figures/GS Volcano_Sym_vs_Apo.png", width = 7, height = 7, dpi = 300)
 
 
 source("CreatePlots.R") #llama al script para crear los gráficos.
+
+# nolint end
