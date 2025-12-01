@@ -19,7 +19,7 @@ resMF #DataFrame with 25428 rows and 6 columns
 summary(resMF) #resume el resultado de la expresión diferencial de genes
 # out of 25428 with nonzero total read count
 # adjusted p-value < 0.1      umbral de significancia que estoy usando
-# LFC > 0 (up)       : 153, 0.6% Log2      Fold Change positivo (más expresión en la condición de interés vs control) # nolint: line_length_linter.
+# LFC > 0 (up)       : 153, 0.6% Log2      Fold Change positivo (más expresión en la condición de interés vs control)
 # LFC < 0 (down)     : 48, 0.19%           Log2 Fold Change negativo (menos expresión)
 # outliers [1]       : 0, 0%
 # low counts [2]     : 0, 0%
