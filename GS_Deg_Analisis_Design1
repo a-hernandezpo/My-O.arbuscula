@@ -88,18 +88,101 @@ degs_plot<-filter(degs, genename!="unknown")
 
 
 ###PLOTS###
-#plotMA
-#results(ddsMF, contrast=c("SymbiontState", "Sym", "Apo")) # especifica el contraste que queremos hacer (Sym vs Apo)
-#plotMA(resMF, main="plotMA Sym vs Apo", ylim=c(-5,5)) #ver gráficamente la EDGs
-#png("figures/GS_MAplot_Sym_vs_Apo.png", width = 2000, height = 1800, res = 300)
 
-#Volcano plot:
 # Convertir a data frame
 df_volc <- as.data.frame(resMF)
 df_volc$gene <- rownames(df_volc)
 
 # Eliminar NA en padj
 df_volc <- df_volc[complete.cases(df_volc$padj), ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Volcano plot:
+
+# Unir los dataframes usando merge con las columnas correctas
+# df_volc$gene debe coincidir con degs$contig
+df_volc <- merge(df_volc, 
+                 degs[, c("contig", "genename")],
+                 by.x = "gene",      # Columna en df_volc
+                 by.y = "contig",    # Columna en degs
+                 all.x = TRUE)       # Mantener todos los genes de df_volc
+
+# Verificar si la unión funcionó
+cat("\nVerificación de la unión:\n")
+cat("Total de filas:", nrow(df_volc), "\n")
+cat("Genes con genename no-NA:", sum(!is.na(df_volc$genename)), "\n") #163
+cat("Genes con genename 'unknown':", sum(df_volc$genename == "unknown", na.rm = TRUE), "\n") #48
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Crear columna label: usar genename si está disponible y no es "unknown"
+# Si no, usar el ID del gene
+df_volc$label <- ifelse(!is.na(df_volc$genename) & 
+                         df_volc$genename != "unknown",
+                       df_volc$genename,
+                       df_volc$gene)
+
+# Ver algunos ejemplos
+cat("\nEjemplos de labels creados:\n")
+ejemplos <- df_volc %>%
+  select(gene, genename, label) %>%
+  head(10)
+print(ejemplos)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Crear columna de significancia
 df_volc$threshold <- "NS"
