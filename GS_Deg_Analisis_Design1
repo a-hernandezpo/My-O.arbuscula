@@ -30,11 +30,11 @@ summary(resMF) #resume el resultado de la expresión diferencial de genes
 
 # standard p value less that 0.05
 sum(resMF$pvalue<0.05, na.rm=TRUE) # 1453
-# how many adjusted p values were less than 0.1
+
 sum(resMF$padj<0.05, na.rm=TRUE) # si padj<0.05 = 163       si padj<0.1 = 201
 conds05<-filter(as.data.frame(resMF), pvalue<0.05) 
 
-write.table(resMF, file="Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
+write.table(resMF, file="GS Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
 valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
 head(valState)
 colnames(valState)=c("pval.state", "padj.state")
@@ -85,8 +85,6 @@ levels(degs$genename)
 
 degs_plot<-filter(degs, genename!="unknown")
 
-
-
 ###PLOTS###
 
 # Convertir a data frame
@@ -95,20 +93,6 @@ df_volc$gene <- rownames(df_volc)
 
 # Eliminar NA en padj
 df_volc <- df_volc[complete.cases(df_volc$padj), ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #Volcano plot:
 
@@ -127,67 +111,28 @@ cat("Genes con genename no-NA:", sum(!is.na(df_volc$genename)), "\n") #163
 cat("Genes con genename 'unknown':", sum(df_volc$genename == "unknown", na.rm = TRUE), "\n") #48
 
 
+# Convertir genename de factor a character
+df_volc$genename <- as.character(df_volc$genename)
 
+# Verificar
+cat("Tipo de genename:", class(df_volc$genename), "\n")
+cat("Ejemplos después de convertir:\n")
+print(head(df_volc[!is.na(df_volc$genename), c("gene", "genename")], 10))
 
+# -------------------------------------------------
+# 2. CREAR COLUMNA LABEL CORRECTAMENTE
+# -------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-# Crear columna label: usar genename si está disponible y no es "unknown"
-# Si no, usar el ID del gene
+# Crear label: usar genename si no es NA y no es "unknown"
 df_volc$label <- ifelse(!is.na(df_volc$genename) & 
                          df_volc$genename != "unknown",
-                       df_volc$genename,
+                       df_volc$genename,  # Ahora será el texto, no el nivel
                        df_volc$gene)
-
-# Ver algunos ejemplos
-cat("\nEjemplos de labels creados:\n")
-ejemplos <- df_volc %>%
-  select(gene, genename, label) %>%
-  head(10)
-print(ejemplos)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Crear columna de significancia
 df_volc$threshold <- "NS"
-df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 1.5] <- "Up"
-df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -1.5] <- "Down"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 2] <- "Up"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -2] <- "Down"
 
 
 ## Volcano plot sencillo:
@@ -203,7 +148,7 @@ ggsave("./GS figures/GS Volcano_Sym_vs_Apo.png", width = 7, height = 7, dpi = 30
 
 #######
 
-## Volcano plot con TODA la información solicitada
+## Volcano plot con TODA la información solicitada:
 
 # Contar genes en cada categoría
 up_count <- sum(df_volc$threshold == "Up")
@@ -240,7 +185,7 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   # Agregar etiquetas para TODOS los genes UP (rojos)
   geom_text_repel(
     data = genes_up,
-    aes(label = gene),
+    aes(label = genename),
     color = "darkred",
     size = 2.8,
     max.overlaps = 100,  # Aumentar para mostrar más etiquetas
@@ -255,7 +200,7 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   # Agregar etiquetas para TODOS los genes DOWN (azules)
   geom_text_repel(
     data = genes_down,
-    aes(label = gene),
+    aes(label = genename),
     color = "darkblue",
     size = 2.8,
     max.overlaps = 100,
@@ -268,7 +213,7 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   ) +
   
   # Líneas de corte
-  geom_vline(xintercept = c(-1.5, 1.5), linetype = "dashed", alpha = 0.5) +
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", alpha = 0.5) +
   geom_hline(yintercept = -log10(0.1), linetype = "dashed", alpha = 0.5) +
   
   # Anotaciones con conteos en el gráfico
@@ -321,32 +266,21 @@ ggsave("./GS figures/GS Volcano_Sym_vs_Apo_COMPLETO.png",
        dpi = 300,
        bg = "white")
 
-# Versión alternativa si hay MUCHOS genes (más de 100) - opcional
-if (nrow(genes_sig) > 100) {
-  cat("\n⚠️  ADVERTENCIA: Hay", nrow(genes_sig), "genes significativos.\n")
-  cat("El gráfico puede estar muy congestionado. Considera:\n")
-  cat("1. Aumentar el tamaño de la imagen guardada\n")
-  cat("2. Mostrar solo los top 20 genes por categoría\n")
-  cat("3. Exportar a PDF para mejor calidad\n")
-  
-  # Opción: Guardar también versión PDF para mejor escalado
-  ggsave("./GS figures/GS Volcano_Sym_vs_Apo_COMPLETO.pdf", 
-         plot = p, 
-         width = 16, 
-         height = 12,
-         device = cairo_pdf)
-}
+
+# Opción: Guardar también versión PDF para mejor escalado
+ggsave("./GS figures/GS Volcano_Sym_vs_Apo_COMPLETO.pdf", 
+       plot = p, 
+       width = 16, 
+       height = 12,
+       device = cairo_pdf)
 
 # Mostrar resumen detallado en consola
-cat("\n")
-cat(strrep("=", 60), "\n")
-cat("RESUMEN COMPLETO - Volcano Plot: Sym vs Apo\n")
-cat(strrep("=", 60), "\n")
-cat("Total genes analizados:", nrow(df_volc), "\n")
-cat("Genes UP-regulados (rojos):", up_count, "\n")
-cat("Genes DOWN-regulados (azules):", down_count, "\n")
-cat("Genes no significativos (gris):", ns_count, "\n")
-cat("Porcentaje significativos:", round((up_count + down_count)/nrow(df_volc)*100, 1), "%\n")
+
+cat("Total genes analizados:", nrow(df_volc), "\n") #25428
+cat("Genes UP-regulados (rojos):", up_count, "\n") #71
+cat("Genes DOWN-regulados (azules):", down_count, "\n") #7
+cat("Genes no significativos (gris):", ns_count, "\n") #25350
+cat("Porcentaje significativos:", round((up_count + down_count)/nrow(df_volc)*100, 1), "%\n") #0.3%
 
 if (up_count > 0) {
   cat("\nTop 5 genes UP-regulados:\n")
@@ -361,7 +295,6 @@ if (down_count > 0) {
                arrange(padj) %>% 
                select(gene, log2FoldChange, padj), 5))
 }
-cat(strrep("=", 60) + "\n")
 
 
 ####

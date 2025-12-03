@@ -2,20 +2,37 @@
 
 source("setup.R") #este comando permite acelerar la corrida del código inicial
 
-## Running DESeq2 
-ddss<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ SymbiontState) #(sin tener en cuenta el genotipo)
+## Running DESeq2
+dds<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ SymbiontState)
 
 #Si se cambia el orden de los factores en el diseño, los resultados de la comparación cambiarán. 
+# podemos probar con: design=~SymbiontState+Genet  o  design=~SymbiontState (sin tener en cuenta el genotipo)
 
 # pre-filtering to remove low count genes 
-keep <- rowSums(counts(ddss)) >= 10
-ddss <- ddss[keep,]
+dim(dds) #25649
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+dim(dds) #25428
 
-ddssMF<-DESeq2::DESeq(ddss) #desarrollo lit de DESeq2
-ressMF<-results(ddssMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
-ressMF #DataFrame with 25428 rows and 6 columns
+ddsMF<-DESeq2::DESeq(dds) #desarrollo lit de DESeq2
+resMF<-results(ddsMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
+resMF #DataFrame with 25428 rows and 6 columns
 
-summary(ressMF) #resume el resultado de la expresión diferencial de genes
+summary(resMF) #resume el resultado de la expresión diferencial de genes
+# out of 25428 with nonzero total read count
+# adjusted p-value < 0.1
+# LFC > 0 (up)       : 72, 0.28%
+# LFC < 0 (down)     : 5, 0.02%
+# outliers [1]       : 536, 2.1%
+# low counts [2]     : 0, 0%
+# (mean count < 1)
+# 72 UP + 5 DOWN = 77 genes significativos
+
+
+
+
+
+
 
 # how many adjusted p values were less than 0.1
 sum(ressMF$padj<0.1, na.rm=TRUE) # 196 --> a nosotras nos da 201
