@@ -94,7 +94,98 @@ source("GS_CreatePlots.R") #llama al script para crear los gráficos.
 
 
 
+#generate the heats data for GOWMU
+heats<-mutate(as.data.frame(resMF),negP=-log(pvalue))
+heats<-mutate(heats,signedlogP=case_when(log2FoldChange<0 ~ negP*-1, log2FoldChange>0 ~ negP))
+heats$genes<-rownames(resMF)
+heats<-select(heats, signedlogP, genes)
+heats<- heats[,c("genes", "signedlogP")]
+write.table(heats, "PVals_GOWMU_Collapsed.csv", sep=",", row.names = FALSE, quote=FALSE)
 
+# two columns of comma-separated values: gene id, continuous measure of significance. 
+input="PVals_GOWMU_Collapsed.csv"
+goAnnotations="coral_gene_GOannot.tab" # two-column, tab-delimited, one line per gene, multiple GO terms separated by semicolon. 
+goDatabase="go.obo"
+#download from http://www.geneontology.org/GO.downloads.ontology.shtml
+goDivision="BP" # either MF, or BP, or CC
+source("gomwu.functions.R")
+
+#Biological Processes
+gomwuStats(input, goDatabase, goAnnotations, goDivision,
+           perlPath="perl",
+           largest=0.1,
+           smallest=10,   # a GO category should contain at least this many genes to be considered, was increased from default due to the large number of BP GO terms that were significant
+           clusterCutHeight=0.35  # cutoff in relatedness of GO terms to merge categories, was increased from default due to the large number of BP GO terms that were significant
+           )
+
+
+
+
+
+           
+
+# Plotting results
+quartz()
+results_BP=gomwuPlot(input,goAnnotations,goDivision,
+                  absValue=-log(0.05,10),  # genes with the measure value exceeding this will be counted as "good genes". Specify absValue=0.001 if you are doing Fisher's exact test for standard GO enrichment or analyzing a WGCNA module (all non-zero genes = "good genes").
+                  level1=0.01, # FDR threshold for plotting. Specify level1=1 to plot all GO categories containing genes exceeding the absValue.(italic font)
+                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
+                  level3=0.00001, # FDR cutoff to print in large bold font.
+                  txtsize=0.8,    # decrease to fit more on one page, or increase (after rescaling the plot so the tree fits the text) for better "word cloud" effect
+                  treeHeight=0.4, # height of the hierarchical clustering tree
+                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
+)
+# Fig S4
+quartz.save(file="FigS4.png",type="png", width = 8, height = 80, dpi = 300 )
+# Table S2 
+write.csv(results_BP, file="TableS2.csv", quote=TRUE, row.names = TRUE)
+
+
+goDivision="MF" # either MF, or BP, or CC
+gomwuStats(input, goDatabase, goAnnotations, goDivision,
+           perlPath="perl",
+           largest=0.1,
+           smallest=10,
+           clusterCutHeight=0.25)
+
+# Plotting results
+quartz()
+results_MF=gomwuPlot(input,goAnnotations,goDivision,
+                  absValue=-log(0.05,10),
+                  level1=0.01, # italic font
+                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
+                  level3=0.00001, # FDR cutoff to print in large bold font.
+                  txtsize=0.8,    
+                  treeHeight=0.4, 
+                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
+)
+# Fig S5
+quartz.save(file="FigS5.png",type="png", width = 8, height = 40, dpi = 300, bg="white")
+#Table S3
+write.csv(results_MF, file="TableS3.csv", quote=TRUE, row.names = TRUE)
+
+goDivision="CC" # either MF, or BP, or CC
+
+gomwuStats(input, goDatabase, goAnnotations, goDivision,
+           perlPath="perl",
+           largest=0.1,
+           smallest=5,
+           clusterCutHeight=0.25)
+
+quartz()
+results_CC=gomwuPlot(input,goAnnotations,goDivision,
+                  absValue=-log(0.05,10),
+                  level1=0.01, # italic font
+                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
+                  level3=0.00001, # FDR cutoff to print in large bold font.
+                  txtsize=0.8,    
+                  treeHeight=0.4, 
+                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
+)
+# Fig S6
+quartz.save(file="FigS6.png",type="png", width = 4, height = 20, dpi = 300, bg="white")
+#Table S4
+write.csv(results_CC, file="TableS4.csv", quote=TRUE, row.names = TRUE)
 
 
 
