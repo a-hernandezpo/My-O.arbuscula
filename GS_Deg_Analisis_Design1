@@ -79,7 +79,6 @@ dim(degs)
 # Si padj<0.1 Hay 201 filas y 60 NA.
 
 
-
 degs$genename <- as.factor(degs$genename)
 levels(degs$genename)  
 # Si padj<0.05 Hay Hay 99 niveles de genename 
@@ -93,25 +92,69 @@ source("GS_CreatePlots.R") #llama al script para crear los gráficos.
 
 
 
+##Gene Ontology analysis with GOWMU:
 
+# Primero, queremos unir los resultados de DESeq2 con los términos de GO para elposterior análisis en Gene Ontology.
+GS_degs_IDs <- read.table("GS degs contig.txt", header = FALSE)
+colnames(GS_degs_IDs) <- c("contig")
+
+AnotacionesGO <- read.delim("coral_gene_GOannot.tab", sep = "\t", header = FALSE)
+
+colnames(AnotacionesGO) <- c("contig", "Terminos_GO")
+
+GS_genes_GO <- inner_join(
+    GS_degs_IDs,          # Tabla de origen (163 DEGs)
+    AnotacionesGO,     # Tabla de destino (Anotaciones de todo el genoma)
+    by = "contig"      # La columna de unión
+)
+
+View(GS_genes_GO) # La tabla final tendrá solo dos columnas: "contig" y "Terminos_GO" 
 
 
 
 #generate the heats data for GOWMU
-heats<-mutate(as.data.frame(resMF),negP=-log(pvalue))
+heats<-mutate(as.data.frame(resMF),negP=-log(pvalue)) # resMF contiene resultados de DESeq2 para cada gen dif. expresado.
 heats<-mutate(heats,signedlogP=case_when(log2FoldChange<0 ~ negP*-1, log2FoldChange>0 ~ negP))
 heats$genes<-rownames(resMF)
 heats<-select(heats, signedlogP, genes)
 heats<- heats[,c("genes", "signedlogP")]
+
+
 write.table(heats, "PVals_GOWMU_Collapsed.csv", sep=",", row.names = FALSE, quote=FALSE)
 
+New_resMF <- heats[1:5000, ]
+dim(New_resMF)
+
+write.table(New_resMF, "NEW_PVals_GOWMU_Collapsed.csv", sep=",", row.names = FALSE, quote=FALSE)
+
+
+colnames(GS_degs_IDs) <- "genes"
+colnames(GS_degs_IDs)
+
+GS_genes_degs <- inner_join(
+    GS_degs_IDs,          # Tabla de origen (163 DEGs)
+    heats,     # Tabla de destino (Anotaciones de todo el genoma)
+    by = "genes"      # La columna de unión
+)
+
+View(GS_genes_deg) # La tabla final tendrá solo dos columnas: "contig" y "Terminos_GO" 
+
+
+#write.table(GS_genes_degs, "PVals_DEGs.tsv", sep="\t", row.names = TRUE, quote=FALSE)
+write.table(GS_genes_degs, "PVals_DEGs.csv", sep=",", row.names = FALSE, quote=FALSE)
+
+
+
+
 # two columns of comma-separated values: gene id, continuous measure of significance. 
-input="PVals_GOWMU_Collapsed.csv"
+input="NEW_PVals_GOWMU_Collapsed.csv"
 goAnnotations="coral_gene_GOannot.tab" # two-column, tab-delimited, one line per gene, multiple GO terms separated by semicolon. 
 goDatabase="go.obo"
 #download from http://www.geneontology.org/GO.downloads.ontology.shtml
 goDivision="BP" # either MF, or BP, or CC
 source("gomwu.functions.R")
+
+test <- read.table("NEW_PVals_GOWMU_Collapsed.csv", sep = "\t", header = T, check.names = F)
 
 #Biological Processes
 gomwuStats(input, goDatabase, goAnnotations, goDivision,

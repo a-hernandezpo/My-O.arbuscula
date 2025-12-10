@@ -27,7 +27,8 @@ gomwuStats=function(input,goDatabase,goAnnotations, goDivision, Module=FALSE, Al
 	clusteringGOs(goAnnotations,goDivision,clusterCutHeight)
 	system(paste(perlPath,"./gomwu_b.pl",goAnnotations,input,goDivision))
 
-	inname=paste(goDivision,"_",input,sep="")	
+	inname=paste(goDivision,"_",input,sep="")
+	#inname=input	
 	rsq=read.table(inname,sep="\t",header=T)
 	rsq$term=as.factor(rsq$term)
 
@@ -182,6 +183,7 @@ gomwuPlot=function(inFile,goAnnotations,goDivision,level1=0.1,level2=0.05,level3
 	pv=read.table(in.mwu,header=T)
 	row.names(pv)=pv$term
 	in.raw=paste(goDivision,input,sep="_")
+	#in.raw=input
 	rsq=read.table(in.raw,sep="\t",header=T)
 	rsq$term=as.factor(rsq$term)
 	
