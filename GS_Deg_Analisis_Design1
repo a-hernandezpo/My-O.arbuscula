@@ -42,22 +42,18 @@ colnames(valState)=c("pval.state", "padj.state")
 rownames(valState)<-rownames(resMF)
 
 
-
 # transform the data for plotting 
 rlogMF=rlogTransformation(dds, blind=TRUE) 
 rld=assay(rlogMF)
 colnames(rld)<-paste(coldata$Genet, coldata$SymbiontState, sep="_")
 
 rldpvals=cbind(rld,valState)
-#head(rldpvals)
-#dim(rldpvals)
-
 table(complete.cases(rldpvals))
 
 rld_data<-as.data.frame(rldpvals)
-#View(rld_data)
 
-##### Heat map of degs0 
+
+##### Heat map of degs
 adjpval=0.05 # FDR cutoff
 conds=filter(rld_data, padj.state<adjpval)
 
@@ -72,43 +68,46 @@ genets<-rep(c("A","B", "C", "D", "F"), 2)
 
 degs$genename[is.na(degs$genename)]<-"unknown" #NA to "unknown"
 
-View(degs)
 head(degs)
-dim(degs)
-# Si padj<0.05 Hay 163 filas y 12 NA.
-# Si padj<0.1 Hay 201 filas y 60 NA.
+dim(degs) # 163 filas y 12 columnas (si padj<0.05)
 
 
+# Convertir las funciones de cada gen en "niveles" para poder graficarlas después:
 degs$genename <- as.factor(degs$genename)
 levels(degs$genename)  
 # Si padj<0.05 Hay Hay 99 niveles de genename 
 # Si padj<0.1 Hay 140 niveles de genename (140 genes anotados diferentes)
 
-
 degs_plot<-filter(degs, genename!="unknown")
 
 #Para crear todos los gráficos de este script, se utiliza el siguiente comando:
-source("GS_CreatePlots.R") #llama al script para crear los gráficos.
+#source("GS_CreatePlots.R") #llama al script para crear los gráficos.
 
 
 
 ##Gene Ontology analysis with GOWMU:
 
-# Primero, queremos unir los resultados de DESeq2 con los términos de GO para elposterior análisis en Gene Ontology.
-GS_degs_IDs <- read.table("GS degs contig.txt", header = FALSE)
-colnames(GS_degs_IDs) <- c("contig")
+# Primero, queremos unir los resultados de DESeq2 con los términos de GO para el posterior análisis en Gene Ontology.
 
-AnotacionesGO <- read.delim("coral_gene_GOannot.tab", sep = "\t", header = FALSE)
+GS_degs_IDs <- data.frame(
+    contig = degs$contig
+)
+View(GS_degs_IDs) # La tabla tiene una columna llamada "contig" con los IDs de los 163 DEGs.
+dim(GS_degs_IDs) #163 filas y 1 columna
+
+AnotacionesGO <- read.delim("data/coral_gene_GOannot.tab", sep = "\t", header = FALSE)
 
 colnames(AnotacionesGO) <- c("contig", "Terminos_GO")
 
-GS_genes_GO <- inner_join(
+GS_degs_GO <- inner_join(
     GS_degs_IDs,          # Tabla de origen (163 DEGs)
     AnotacionesGO,     # Tabla de destino (Anotaciones de todo el genoma)
     by = "contig"      # La columna de unión
 )
 
-View(GS_genes_GO) # La tabla final tendrá solo dos columnas: "contig" y "Terminos_GO" 
+dim(GS_degs_GO) # Columnas: "contig" y "Terminos_GO" Tiene 116 genes. ¿Por qué menos que 163? Porque algunos genes no tienen anotación GO.
+write.table(GS_degs_GO, file="GS_degs_GO.txt", sep="\t", quote=F)
+write.table(GS_degs_GO, file="GS_degs_GO.tsv", sep="\t", quote=F)
 
 
 
@@ -144,15 +143,15 @@ View(GS_genes_deg) # La tabla final tendrá solo dos columnas: "contig" y "Termi
 write.table(GS_genes_degs, "PVals_DEGs.csv", sep=",", row.names = FALSE, quote=FALSE)
 
 
-
+#### Hasta aquí quedamos con Maryam ####
 
 # two columns of comma-separated values: gene id, continuous measure of significance. 
 input="NEW_PVals_GOWMU_Collapsed.csv"
-goAnnotations="coral_gene_GOannot.tab" # two-column, tab-delimited, one line per gene, multiple GO terms separated by semicolon. 
-goDatabase="go.obo"
+goAnnotations="data/coral_gene_GOannot.tab" # two-column, tab-delimited, one line per gene, multiple GO terms separated by semicolon. 
+goDatabase="data/go.obo"
 #download from http://www.geneontology.org/GO.downloads.ontology.shtml
 goDivision="BP" # either MF, or BP, or CC
-source("gomwu.functions.R")
+source("data/gomwu.functions.R")
 
 test <- read.table("NEW_PVals_GOWMU_Collapsed.csv", sep = "\t", header = T, check.names = F)
 
