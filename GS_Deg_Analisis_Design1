@@ -18,6 +18,7 @@ ddsMF<-DESeq2::DESeq(dds) #desarrollo lit de DESeq2
 resMF<-results(ddsMF) #resultados se guardan en nueva variable ("resultados Modelo Final")
 resMF #DataFrame with 25428 rows and 6 columns
 
+# design=~ Genet + SymbiontState
 summary(resMF) #resume el resultado de la expresión diferencial de genes
 # out of 25428 with nonzero total read count
 # adjusted p-value < 0.1                   umbral de significancia que estoy usando
@@ -77,6 +78,8 @@ dim(degs)
 # Si padj<0.05 Hay 163 filas y 12 NA.
 # Si padj<0.1 Hay 201 filas y 60 NA.
 
+
+
 degs$genename <- as.factor(degs$genename)
 levels(degs$genename)  
 # Si padj<0.05 Hay Hay 99 niveles de genename 
@@ -122,7 +125,7 @@ gomwuStats(input, goDatabase, goAnnotations, goDivision,
 
 
 
-           
+
 
 # Plotting results
 quartz()
