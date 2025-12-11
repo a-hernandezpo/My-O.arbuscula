@@ -1,4 +1,171 @@
 # nolint start: line_length_linter
+# Convertir a data frame
+df_volc <- as.data.frame(resMF)
+df_volc$gene <- rownames(df_volc)
+
+# Eliminar NA en padj
+df_volc <- df_volc[complete.cases(df_volc$padj), ]
+
+#Volcano plot:
+
+# Unir los dataframes usando merge con las columnas correctas
+# df_volc$gene debe coincidir con degs$contig
+df_volc <- merge(df_volc, 
+                 degs[, c("contig", "genename")],
+                 by.x = "gene",      # Columna en df_volc
+                 by.y = "contig",    # Columna en degs
+                 all.x = TRUE)       # Mantener todos los genes de df_volc
+
+
+# Convertir genename de factor a character
+df_volc$genename <- as.character(df_volc$genename)
+
+print(head(df_volc[!is.na(df_volc$genename), c("gene", "genename")], 10))
+
+# Crear label: usar genename si no es NA y no es "unknown"
+df_volc$label <- ifelse(!is.na(df_volc$genename) & 
+                         df_volc$genename != "unknown",
+                       df_volc$genename,  # Ahora será el texto, no el nivel
+                       df_volc$gene)
+
+# Crear columna de significancia
+df_volc$threshold <- "NS"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 2] <- "Up"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -2] <- "Down"
+
+
+## Volcano plot con TODA la información solicitada:
+
+# Contar genes en cada categoría
+up_count <- sum(df_volc$threshold == "Up")
+down_count <- sum(df_volc$threshold == "Down")
+ns_count <- sum(df_volc$threshold == "NS")
+
+# Preparar datos para etiquetar TODOS los genes significativos
+# Genes UP (rojos) - todos
+genes_up <- df_volc %>% 
+  filter(threshold == "Up") %>%
+  mutate(label_color = "red")
+
+# Genes DOWN (azules) - todos
+genes_down <- df_volc %>% 
+  filter(threshold == "Down") %>%
+  mutate(label_color = "blue")
+
+# Combinar todos los genes significativos
+genes_sig <- bind_rows(genes_up, genes_down)
+
+# Crear el volcano plot con TODA la información
+p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
+  geom_point(alpha = 0.6, size = 2) +
+  scale_color_manual(
+    values = c("Down" = "blue", "Up" = "red", "NS" = "grey"),
+    name = "Tipo de regulación:",
+    labels = c(
+      paste0("Down (", down_count, " genes)"),
+      paste0("NS (", ns_count, " genes)"),
+      paste0("Up (", up_count, " genes)")
+    )
+  ) +
+
+  # Agregar etiquetas para TODOS los genes UP (rojos)
+  geom_text_repel(
+    data = genes_up,
+    aes(label = genename),
+    color = "darkred",
+    size = 2.8,
+    max.overlaps = 100,  # Aumentar para mostrar más etiquetas
+    box.padding = 0.35,
+    point.padding = 0.3,
+    segment.color = "darkred",
+    segment.alpha = 0.5,
+    min.segment.length = 0.1,
+    force = 2
+  ) +
+  
+  # Agregar etiquetas para TODOS los genes DOWN (azules)
+  geom_text_repel(
+    data = genes_down,
+    aes(label = genename),
+    color = "darkblue",
+    size = 2.8,
+    max.overlaps = 100,
+    box.padding = 0.35,
+    point.padding = 0.3,
+    segment.color = "darkblue",
+    segment.alpha = 0.5,
+    min.segment.length = 0.1,
+    force = 2
+  ) +
+  
+  # Líneas de corte finas
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", color = "black", alpha = 0.5) +
+  geom_hline(yintercept = -log10(0.1), linetype = "dashed", color = "black", alpha = 0.5) +
+  
+  # Etiquetas de corte FUERA del gráfico
+  annotate("text", x = -2, y = 0, label = "-2", vjust = 2, size = 5) +
+  annotate("text", x = 2, y = 0, label = "2", vjust = 2, size = 5) +
+  annotate("text", x = min(df_volc$log2FoldChange), 
+           y = -log10(0.1), label = "0.1", hjust = -0.2, vjust = -1, size = 5) +
+  
+  # Anotaciones con conteos en el gráfico
+  annotate("text", 
+           x = min(df_volc$log2FoldChange) * 0.95, 
+           y = max(-log10(df_volc$padj)) * 0.98,
+           label = paste("DOWN:", down_count, "genes"),
+           color = "blue", size = 4.5, fontface = "bold", hjust = 0) +
+  
+  annotate("text", 
+           x = max(df_volc$log2FoldChange) * 0.95, 
+           y = max(-log10(df_volc$padj)) * 0.98,
+           label = paste("UP:", up_count, "genes"),
+           color = "red", size = 4.5, fontface = "bold", hjust = 1) +
+  
+  # Título con resumen completo
+  labs(
+    #title = "SS Volcano plot: Sym vs Apo",
+    subtitle = paste("Genes totales: ", nrow(df_volc), 
+                     " | Significativos: ", up_count + down_count,
+                     " (", round((up_count + down_count)/nrow(df_volc)*100, 1), "%)", sep = ""),
+    x = "log2 Fold Change",
+    y = "-log10 adjusted p-value"
+  ) +
+  
+  theme_minimal(base_size = 12) +
+  theme(
+    #plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 20, hjust = 0.5, margin = margin(b = 15), position = "bottom"),
+    legend.position = "bottom",
+    legend.title = element_text(size = 20),
+    legend.text = element_text(size = 20),
+    #panel.grid.minor = element_blank(),
+    
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20),
+    axis.title.x = element_text(size = 20, face = "bold"),  # tamaño título eje X
+    axis.title.y = element_text(size = 20, face = "bold"),  # tamaño título eje Y
+
+  ) +
+  
+  # Ajustar límites para mejor visualización
+  scale_x_continuous(expand = expansion(mult = 0.1)) +
+  scale_y_continuous(expand = expansion(mult = 0.1))
+
+# Mostrar el gráfico
+print(p)
+
+# Guardar con alta resolución (ajustar tamaño según número de genes)
+width_size <- 12 + (nrow(genes_sig) / 50)  # Ajustar ancho según número de genes
+height_size <- 10 + (nrow(genes_sig) / 100)  # Ajustar alto según número de genes
+
+ggsave("./SS figures/SS Volcano_Sym_vs_Apo_COMPLETO.png", 
+       plot = p, 
+       width = min(width_size, 20),  # Máximo 20 pulgadas
+       height = min(height_size, 16),  # Máximo 16 pulgadas
+       dpi = 300,
+       bg = "white")
+
+
 
 ccol<-rev(colorRampPalette(brewer.pal(n=11, name="BrBG"))(80))
 ccol2<-rev(colorRampPalette(brewer.pal(n=11, name="RdYlBu"))(50))

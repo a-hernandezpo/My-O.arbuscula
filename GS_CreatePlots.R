@@ -1,64 +1,5 @@
 # nolint start: line_length_linter
-# Convertir a data frame
-df_volc <- as.data.frame(resMF)
-df_volc$gene <- rownames(df_volc)
 
-# Eliminar NA en padj
-df_volc <- df_volc[complete.cases(df_volc$padj), ]
-
-#Volcano plot:
-
-# Unir los dataframes usando merge con las columnas correctas
-# df_volc$gene debe coincidir con degs$contig
-df_volc <- merge(df_volc, 
-                 degs[, c("contig", "genename")],
-                 by.x = "gene",      # Columna en df_volc
-                 by.y = "contig",    # Columna en degs
-                 all.x = TRUE)       # Mantener todos los genes de df_volc
-
-# Verificar si la unión funcionó
-cat("\nVerificación de la unión:\n")
-cat("Total de filas:", nrow(df_volc), "\n")
-cat("Genes con genename no-NA:", sum(!is.na(df_volc$genename)), "\n") #163
-cat("Genes con genename 'unknown':", sum(df_volc$genename == "unknown", na.rm = TRUE), "\n") #48
-
-
-# Convertir genename de factor a character
-df_volc$genename <- as.character(df_volc$genename)
-
-# Verificar
-cat("Tipo de genename:", class(df_volc$genename), "\n")
-cat("Ejemplos después de convertir:\n")
-print(head(df_volc[!is.na(df_volc$genename), c("gene", "genename")], 10))
-
-# -------------------------------------------------
-# 2. CREAR COLUMNA LABEL CORRECTAMENTE
-# -------------------------------------------------
-
-# Crear label: usar genename si no es NA y no es "unknown"
-df_volc$label <- ifelse(!is.na(df_volc$genename) & 
-                         df_volc$genename != "unknown",
-                       df_volc$genename,  # Ahora será el texto, no el nivel
-                       df_volc$gene)
-
-# Crear columna de significancia
-df_volc$threshold <- "NS"
-df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 2] <- "Up"
-df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -2] <- "Down"
-
-
-## Volcano plot sencillo:
-ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold)) +
-    geom_point(alpha = 0.6) +
-    scale_color_manual(values = c("Down"="blue", "Up"="red", "NS"="grey")) +
-    theme_minimal() +
-    xlab("log2 Fold Change") +
-    ylab("-log10 adjusted p-value") +
-    ggtitle("Genet + SymbiontState Volcano plot: Sym vs Apo")
-
-ggsave("./GS figures/GS Volcano_Sym_vs_Apo.png", width = 7, height = 7, dpi = 300)
-
-#######
 
 ## Volcano plot con TODA la información solicitada:
 
@@ -86,14 +27,14 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   geom_point(alpha = 0.6, size = 2) +
   scale_color_manual(
     values = c("Down" = "blue", "Up" = "red", "NS" = "grey"),
-    name = "Regulación",
+    name = "Tipo de regulación:",
     labels = c(
       paste0("Down (", down_count, " genes)"),
       paste0("NS (", ns_count, " genes)"),
       paste0("Up (", up_count, " genes)")
     )
   ) +
-  
+
   # Agregar etiquetas para TODOS los genes UP (rojos)
   geom_text_repel(
     data = genes_up,
@@ -124,9 +65,15 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
     force = 2
   ) +
   
-  # Líneas de corte
-  geom_vline(xintercept = c(-2, 2), linetype = "dashed", alpha = 0.5) +
-  geom_hline(yintercept = -log10(0.1), linetype = "dashed", alpha = 0.5) +
+  # Líneas de corte finas
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", color = "black", alpha = 0.5) +
+  geom_hline(yintercept = -log10(0.1), linetype = "dashed", color = "black", alpha = 0.5) +
+  
+  # Etiquetas de corte FUERA del gráfico
+  annotate("text", x = -2, y = 0, label = "-2", vjust = 2, size = 5) +
+  annotate("text", x = 2, y = 0, label = "2", vjust = 2, size = 5) +
+  annotate("text", x = min(df_volc$log2FoldChange), 
+           y = -log10(0.1), label = "0.1", hjust = -0.2, vjust = -1, size = 5) +
   
   # Anotaciones con conteos en el gráfico
   annotate("text", 
@@ -143,9 +90,9 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   
   # Título con resumen completo
   labs(
-    title = "GS Volcano plot: Sym vs Apo",
-    subtitle = paste("Total genes:", nrow(df_volc), 
-                     "| Significativos:", up_count + down_count,
+    #title = "GS Volcano plot: Sym vs Apo",
+    subtitle = paste("Genes totales: ", nrow(df_volc), 
+                     " | Significativos: ", up_count + down_count,
                      " (", round((up_count + down_count)/nrow(df_volc)*100, 1), "%)", sep = ""),
     x = "log2 Fold Change",
     y = "-log10 adjusted p-value"
@@ -153,11 +100,18 @@ p <- ggplot(df_volc, aes(x = log2FoldChange, y = -log10(padj), color = threshold
   
   theme_minimal(base_size = 12) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 12, hjust = 0.5, margin = margin(b = 15)),
+    #plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 20, hjust = 0.5, margin = margin(b = 15), position = "bottom"),
     legend.position = "bottom",
-    legend.title = element_text(face = "bold"),
-    panel.grid.minor = element_blank()
+    legend.title = element_text(size = 20),
+    legend.text = element_text(size = 20),
+    #panel.grid.minor = element_blank(),
+    
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20),
+    axis.title.x = element_text(size = 20, face = "bold"),  # tamaño título eje X
+    axis.title.y = element_text(size = 20, face = "bold"),  # tamaño título eje Y
+
   ) +
   
   # Ajustar límites para mejor visualización
@@ -207,6 +161,8 @@ if (down_count > 0) {
                arrange(padj) %>% 
                select(gene, log2FoldChange, padj), 5))
 }
+
+
 
 
 

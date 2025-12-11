@@ -30,19 +30,16 @@ summary(resMF) #resume el resultado de la expresión diferencial de genes
 # 72 UP + 5 DOWN = 77 genes significativos
 
 # standard p value less that 0.05
-sum(resMF$pvalue<0.05, na.rm=TRUE) # 490
+sum(resMF$pvalue<0.05, na.rm=TRUE) # 1453
 
-sum(resMF$padj<0.05, na.rm=TRUE) # si padj<0.05 = 70
+sum(resMF$padj<0.05, na.rm=TRUE) # si padj<0.05 = 163       si padj<0.1 = 201
 conds05<-filter(as.data.frame(resMF), pvalue<0.05) 
 
-
-write.table(resMF, file="SS_Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
+write.table(resMF, file="SS Sym_vs_Apo_collapsed.txt", sep="\t", quote=F)
 valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
 head(valState)
 colnames(valState)=c("pval.state", "padj.state")
 rownames(valState)<-rownames(resMF)
-
-
 
 # transform the data for plotting 
 rlogMF=rlogTransformation(dds, blind=TRUE) 
@@ -55,7 +52,7 @@ table(complete.cases(rldpvals))
 rld_data<-as.data.frame(rldpvals)
 
 
-##### Heat map of degs0 
+##### Heat map of degs
 adjpval=0.05 # FDR cutoff
 conds=filter(rld_data, padj.state<adjpval)
 
@@ -70,15 +67,103 @@ genets<-rep(c("A","B", "C", "D", "F"), 2)
 
 degs$genename[is.na(degs$genename)]<-"unknown" #NA to "unknown"
 
-View(degs)
 head(degs)
-dim(degs)
+dim(degs) # 163 filas y 12 columnas (si padj<0.05)
 
+
+# Convertir las funciones de cada gen en "niveles" para poder graficarlas después:
 degs$genename <- as.factor(degs$genename)
 levels(degs$genename)  
-
+# Si padj<0.05 Hay Hay 99 niveles de genename 
+# Si padj<0.1 Hay 140 niveles de genename (140 genes anotados diferentes)
 
 degs_plot<-filter(degs, genename!="unknown")
+
+# Convertir a data frame
+df_volc <- as.data.frame(resMF)
+df_volc$gene <- rownames(df_volc)
+
+# Eliminar NA en padj
+df_volc <- df_volc[complete.cases(df_volc$padj), ]
+
+#Volcano plot:
+
+# Unir los dataframes usando merge con las columnas correctas
+# df_volc$gene debe coincidir con degs$contig
+df_volc <- merge(df_volc, 
+                 degs[, c("contig", "genename")],
+                 by.x = "gene",      # Columna en df_volc
+                 by.y = "contig",    # Columna en degs
+                 all.x = TRUE)       # Mantener todos los genes de df_volc
+
+
+# Convertir genename de factor a character
+df_volc$genename <- as.character(df_volc$genename)
+
+print(head(df_volc[!is.na(df_volc$genename), c("gene", "genename")], 10))
+
+# Crear label: usar genename si no es NA y no es "unknown"
+df_volc$label <- ifelse(!is.na(df_volc$genename) & 
+                         df_volc$genename != "unknown",
+                       df_volc$genename,  # Ahora será el texto, no el nivel
+                       df_volc$gene)
+
+# Crear columna de significancia
+df_volc$threshold <- "NS"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 2] <- "Up"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -2] <- "Down"
+
+
+
+# Filtrar genes significativos (padj < 0.1)
+res_sig <- subset(resMF, padj < 0.1)
+
+# Convertir a dataframe y agregar nombres de genes como columna
+df_sig <- as.data.frame(res_sig)
+df_sig$gene <- rownames(df_sig)
+
+# Renombrar columna para hacer merge (igual que en tu volcano plot)
+df_sig$contig <- rownames(df_sig)
+
+# Hacer merge con la información de funciones de gg
+df_sig <- merge(df_sig, 
+                degs[, c("contig", "genename")],
+                by = "contig",
+                all.x = TRUE)
+
+# Convertir genename de factor a character
+df_sig$genename <- as.character(df_sig$genename)
+
+# Si no hay anotación, poner "unknown"
+df_sig$genename[is.na(df_sig$genename)] <- "unknown"
+
+# Crear dataframe UP (LFC > 0)
+df_up <- subset(df_sig, log2FoldChange > 0)
+# Ordenar columnas: gen, función, pvalor, padj, LFC
+df_up <- df_up[, c("gene", "genename", "pvalue", "padj", "log2FoldChange")]
+colnames(df_up) <- c("Gene", "Function", "pvalue", "padj", "log2FoldChange")
+
+# Crear dataframe DOWN (LFC < 0)
+df_down <- subset(df_sig, log2FoldChange < 0)
+df_down <- df_down[, c("gene", "genename", "pvalue", "padj", "log2FoldChange")]
+colnames(df_down) <- c("Gene", "Function", "pvalue", "padj", "log2FoldChange")
+
+# Mostrar dimensiones
+cat("UP genes:", nrow(df_up), "\n")
+cat("DOWN genes:", nrow(df_down), "\n")
+
+# Ver primeros genes de cada dataframe
+head(df_up)
+head(df_down)
+
+if (!require("openxlsx")) install.packages("openxlsx")
+library(openxlsx)
+
+# Alternativa: ambos en un solo archivo Excel con pestañas diferentes
+write.xlsx(list(UP = df_up, DOWN = df_down), 
+           file = "SS_genes_diferenciales.xlsx",
+           colNames = TRUE, rowNames = FALSE)
+           
 #Para crear todos los gráficos de este script, se utiliza el siguiente comando:
 #source("sS_CreatePlots.R") #llama al script para crear los gráficos.
 

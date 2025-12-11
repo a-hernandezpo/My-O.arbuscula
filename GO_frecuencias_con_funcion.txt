@@ -1,0 +1,757 @@
+Terminos_GO	Frecuencia	GO_name	Termino_funcion
+GO:0005737	30	cytoplasm	GO:0005737_cytoplasm
+GO:0005829	27	cytosol	GO:0005829_cytosol
+GO:0005634	26	nucleus	GO:0005634_nucleus
+GO:0016021	18	NA	GO:0016021_NA
+GO:0005739	17	mitochondrion	GO:0005739_mitochondrion
+GO:0005524	15	ATP binding	GO:0005524_ATP binding
+GO:0046872	14	metal ion binding	GO:0046872_metal ion binding
+GO:0005509	12	calcium ion binding	GO:0005509_calcium ion binding
+GO:0005886	12	plasma membrane	GO:0005886_plasma membrane
+GO:0005789	9	endoplasmic reticulum membrane	GO:0005789_endoplasmic reticulum membrane
+GO:0005654	8	nucleoplasm	GO:0005654_nucleoplasm
+GO:0051301	8	cell division	GO:0051301_cell division
+GO:0005506	7	iron ion binding	GO:0005506_iron ion binding
+GO:0005783	7	endoplasmic reticulum	GO:0005783_endoplasmic reticulum
+GO:0007049	7	cell cycle	GO:0007049_cell cycle
+GO:0000122	6	negative regulation of transcription by RNA polymerase II	GO:0000122_negative regulation of transcription by RNA polymerase II
+GO:0005576	6	extracellular region	GO:0005576_extracellular region
+GO:0005887	6	NA	GO:0005887_NA
+GO:0006656	6	phosphatidylcholine biosynthetic process	GO:0006656_phosphatidylcholine biosynthetic process
+GO:0050660	6	flavin adenine dinucleotide binding	GO:0050660_flavin adenine dinucleotide binding
+GO:0003700	5	DNA-binding transcription factor activity	GO:0003700_DNA-binding transcription factor activity
+GO:0007275	5	multicellular organism development	GO:0007275_multicellular organism development
+GO:0032991	5	protein-containing complex	GO:0032991_protein-containing complex
+GO:0043231	5	intracellular membrane-bounded organelle	GO:0043231_intracellular membrane-bounded organelle
+GO:0000234	4	phosphoethanolamine N-methyltransferase activity	GO:0000234_phosphoethanolamine N-methyltransferase activity
+GO:0000287	4	magnesium ion binding	GO:0000287_magnesium ion binding
+GO:0004842	4	ubiquitin-protein transferase activity	GO:0004842_ubiquitin-protein transferase activity
+GO:0005615	4	extracellular space	GO:0005615_extracellular space
+GO:0005764	4	lysosome	GO:0005764_lysosome
+GO:0005794	4	Golgi apparatus	GO:0005794_Golgi apparatus
+GO:0006541	4	glutamine metabolic process	GO:0006541_glutamine metabolic process
+GO:0008270	4	zinc ion binding	GO:0008270_zinc ion binding
+GO:0008289	4	lipid binding	GO:0008289_lipid binding
+GO:0042493	4	NA	GO:0042493_NA
+GO:0042752	4	regulation of circadian rhythm	GO:0042752_regulation of circadian rhythm
+GO:0045892	4	negative regulation of DNA-templated transcription	GO:0045892_negative regulation of DNA-templated transcription
+GO:0000981	3	DNA-binding transcription factor activity, RNA polymerase II-specific	GO:0000981_DNA-binding transcription factor activity, RNA polymerase II-specific
+GO:0003677	3	DNA binding	GO:0003677_DNA binding
+GO:0003723	3	RNA binding	GO:0003723_RNA binding
+GO:0004356	3	glutamine synthetase activity	GO:0004356_glutamine synthetase activity
+GO:0004674	3	protein serine/threonine kinase activity	GO:0004674_protein serine/threonine kinase activity
+GO:0005730	3	nucleolus	GO:0005730_nucleolus
+GO:0005765	3	lysosomal membrane	GO:0005765_lysosomal membrane
+GO:0006355	3	regulation of DNA-templated transcription	GO:0006355_regulation of DNA-templated transcription
+GO:0006542	3	glutamine biosynthetic process	GO:0006542_glutamine biosynthetic process
+GO:0008134	3	transcription factor binding	GO:0008134_transcription factor binding
+GO:0008233	3	peptidase activity	GO:0008233_peptidase activity
+GO:0008283	3	cell population proliferation	GO:0008283_cell population proliferation
+GO:0009267	3	cellular response to starvation	GO:0009267_cellular response to starvation
+GO:0010181	3	FMN binding	GO:0010181_FMN binding
+GO:0016040	3	glutamate synthase (NADH) activity	GO:0016040_glutamate synthase (NADH) activity
+GO:0016324	3	apical plasma membrane	GO:0016324_apical plasma membrane
+GO:0016491	3	oxidoreductase activity	GO:0016491_oxidoreductase activity
+GO:0016540	3	protein autoprocessing	GO:0016540_protein autoprocessing
+GO:0016567	3	protein ubiquitination	GO:0016567_protein ubiquitination
+GO:0030148	3	sphingolipid biosynthetic process	GO:0030148_sphingolipid biosynthetic process
+GO:0031526	3	brush border membrane	GO:0031526_brush border membrane
+GO:0042593	3	glucose homeostasis	GO:0042593_glucose homeostasis
+GO:0042802	3	identical protein binding	GO:0042802_identical protein binding
+GO:0042803	3	protein homodimerization activity	GO:0042803_protein homodimerization activity
+GO:0043066	3	negative regulation of apoptotic process	GO:0043066_negative regulation of apoptotic process
+GO:0043312	3	neutrophil degranulation	GO:0043312_neutrophil degranulation
+GO:0044877	3	protein-containing complex binding	GO:0044877_protein-containing complex binding
+GO:0045944	3	positive regulation of transcription by RNA polymerase II	GO:0045944_positive regulation of transcription by RNA polymerase II
+GO:0051538	3	3 iron, 4 sulfur cluster binding	GO:0051538_3 iron, 4 sulfur cluster binding
+GO:0070062	3	extracellular exosome	GO:0070062_extracellular exosome
+GO:0071949	3	FAD binding	GO:0071949_FAD binding
+GO:0097054	3	L-glutamate biosynthetic process	GO:0097054_L-glutamate biosynthetic process
+GO:0000050	2	urea cycle	GO:0000050_urea cycle
+GO:0000055	2	ribosomal large subunit export from nucleus	GO:0000055_ribosomal large subunit export from nucleus
+GO:0000056	2	ribosomal small subunit export from nucleus	GO:0000056_ribosomal small subunit export from nucleus
+GO:0000209	2	protein polyubiquitination	GO:0000209_protein polyubiquitination
+GO:0000978	2	RNA polymerase II cis-regulatory region sequence-specific DNA binding	GO:0000978_RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0001228	2	DNA-binding transcription activator activity, RNA polymerase II-specific	GO:0001228_DNA-binding transcription activator activity, RNA polymerase II-specific
+GO:0001525	2	angiogenesis	GO:0001525_angiogenesis
+GO:0001666	2	response to hypoxia	GO:0001666_response to hypoxia
+GO:0003323	2	type B pancreatic cell development	GO:0003323_type B pancreatic cell development
+GO:0003735	2	structural constituent of ribosome	GO:0003735_structural constituent of ribosome
+GO:0003878	2	ATP citrate synthase activity	GO:0003878_ATP citrate synthase activity
+GO:0004087	2	carbamoyl-phosphate synthase (ammonia) activity	GO:0004087_carbamoyl-phosphate synthase (ammonia) activity
+GO:0004088	2	carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity	GO:0004088_carbamoyl-phosphate synthase (glutamine-hydrolyzing) activity
+GO:0004609	2	phosphatidylserine decarboxylase activity	GO:0004609_phosphatidylserine decarboxylase activity
+GO:0005049	2	nuclear export signal receptor activity	GO:0005049_nuclear export signal receptor activity
+GO:0005525	2	GTP binding	GO:0005525_GTP binding
+GO:0005635	2	nuclear envelope	GO:0005635_nuclear envelope
+GO:0005759	2	mitochondrial matrix	GO:0005759_mitochondrial matrix
+GO:0005791	2	rough endoplasmic reticulum	GO:0005791_rough endoplasmic reticulum
+GO:0006071	2	glycerol metabolic process	GO:0006071_glycerol metabolic process
+GO:0006085	2	acetyl-CoA biosynthetic process	GO:0006085_acetyl-CoA biosynthetic process
+GO:0006101	2	citrate metabolic process	GO:0006101_citrate metabolic process
+GO:0006207	2	'de novo' pyrimidine nucleobase biosynthetic process	GO:0006207_'de novo' pyrimidine nucleobase biosynthetic process
+GO:0006281	2	DNA repair	GO:0006281_DNA repair
+GO:0006357	2	regulation of transcription by RNA polymerase II	GO:0006357_regulation of transcription by RNA polymerase II
+GO:0006508	2	proteolysis	GO:0006508_proteolysis
+GO:0006537	2	glutamate biosynthetic process	GO:0006537_glutamate biosynthetic process
+GO:0006564	2	L-serine biosynthetic process	GO:0006564_L-serine biosynthetic process
+GO:0006579	2	amino-acid betaine catabolic process	GO:0006579_amino-acid betaine catabolic process
+GO:0006611	2	protein export from nucleus	GO:0006611_protein export from nucleus
+GO:0006631	2	fatty acid metabolic process	GO:0006631_fatty acid metabolic process
+GO:0006633	2	fatty acid biosynthetic process	GO:0006633_fatty acid biosynthetic process
+GO:0006636	2	unsaturated fatty acid biosynthetic process	GO:0006636_unsaturated fatty acid biosynthetic process
+GO:0006637	2	acyl-CoA metabolic process	GO:0006637_acyl-CoA metabolic process
+GO:0006646	2	phosphatidylethanolamine biosynthetic process	GO:0006646_phosphatidylethanolamine biosynthetic process
+GO:0006869	2	lipid transport	GO:0006869_lipid transport
+GO:0006913	2	nucleocytoplasmic transport	GO:0006913_nucleocytoplasmic transport
+GO:0006974	2	DNA damage response	GO:0006974_DNA damage response
+GO:0007283	2	spermatogenesis	GO:0007283_spermatogenesis
+GO:0007623	2	circadian rhythm	GO:0007623_circadian rhythm
+GO:0008017	2	microtubule binding	GO:0008017_microtubule binding
+GO:0008168	2	methyltransferase activity	GO:0008168_methyltransferase activity
+GO:0008285	2	negative regulation of cell population proliferation	GO:0008285_negative regulation of cell population proliferation
+GO:0008536	2	NA	GO:0008536_NA
+GO:0008610	2	lipid biosynthetic process	GO:0008610_lipid biosynthetic process
+GO:0009086	2	methionine biosynthetic process	GO:0009086_methionine biosynthetic process
+GO:0009501	2	amyloplast	GO:0009501_amyloplast
+GO:0009555	2	pollen development	GO:0009555_pollen development
+GO:0009617	2	response to bacterium	GO:0009617_response to bacterium
+GO:0009636	2	response to toxic substance	GO:0009636_response to toxic substance
+GO:0009725	2	response to hormone	GO:0009725_response to hormone
+GO:0009826	2	unidimensional cell growth	GO:0009826_unidimensional cell growth
+GO:0009860	2	pollen tube growth	GO:0009860_pollen tube growth
+GO:0009881	2	photoreceptor activity	GO:0009881_photoreceptor activity
+GO:0010183	2	pollen tube guidance	GO:0010183_pollen tube guidance
+GO:0010594	2	regulation of endothelial cell migration	GO:0010594_regulation of endothelial cell migration
+GO:0015031	2	protein transport	GO:0015031_protein transport
+GO:0016290	2	obsolete palmitoyl-CoA hydrolase activity	GO:0016290_obsolete palmitoyl-CoA hydrolase activity
+GO:0016363	2	nuclear matrix	GO:0016363_nuclear matrix
+GO:0016595	2	glutamate binding	GO:0016595_glutamate binding
+GO:0016604	2	nuclear body	GO:0016604_nuclear body
+GO:0016747	2	acyltransferase activity, transferring groups other than amino-acyl groups	GO:0016747_acyltransferase activity, transferring groups other than amino-acyl groups
+GO:0018298	2	obsolete protein-chromophore linkage	GO:0018298_obsolete protein-chromophore linkage
+GO:0018345	2	protein palmitoylation	GO:0018345_protein palmitoylation
+GO:0019432	2	triglyceride biosynthetic process	GO:0019432_triglyceride biosynthetic process
+GO:0019676	2	ammonia assimilation cycle	GO:0019676_ammonia assimilation cycle
+GO:0019706	2	protein-cysteine S-palmitoyltransferase activity	GO:0019706_protein-cysteine S-palmitoyltransferase activity
+GO:0019901	2	protein kinase binding	GO:0019901_protein kinase binding
+GO:0019904	2	protein domain specific binding	GO:0019904_protein domain specific binding
+GO:0020037	2	heme binding	GO:0020037_heme binding
+GO:0031090	2	organelle membrane	GO:0031090_organelle membrane
+GO:0031305	2	obsolete integral component of mitochondrial inner membrane	GO:0031305_obsolete integral component of mitochondrial inner membrane
+GO:0031397	2	negative regulation of protein ubiquitination	GO:0031397_negative regulation of protein ubiquitination
+GO:0031402	2	sodium ion binding	GO:0031402_sodium ion binding
+GO:0031514	2	motile cilium	GO:0031514_motile cilium
+GO:0031667	2	response to nutrient levels	GO:0031667_response to nutrient levels
+GO:0031965	2	nuclear membrane	GO:0031965_nuclear membrane
+GO:0031982	2	vesicle	GO:0031982_vesicle
+GO:0032496	2	response to lipopolysaccharide	GO:0032496_response to lipopolysaccharide
+GO:0032922	2	circadian regulation of gene expression	GO:0032922_circadian regulation of gene expression
+GO:0033762	2	response to glucagon	GO:0033762_response to glucagon
+GO:0034599	2	cellular response to oxidative stress	GO:0034599_cellular response to oxidative stress
+GO:0042425	2	choline biosynthetic process	GO:0042425_choline biosynthetic process
+GO:0042754	2	negative regulation of circadian rhythm	GO:0042754_negative regulation of circadian rhythm
+GO:0042760	2	very long-chain fatty acid catabolic process	GO:0042760_very long-chain fatty acid catabolic process
+GO:0043153	2	entrainment of circadian clock by photoperiod	GO:0043153_entrainment of circadian clock by photoperiod
+GO:0044212	2	NA	GO:0044212_NA
+GO:0045087	2	innate immune response	GO:0045087_innate immune response
+GO:0045121	2	membrane raft	GO:0045121_membrane raft
+GO:0045471	2	response to ethanol	GO:0045471_response to ethanol
+GO:0045893	2	positive regulation of DNA-templated transcription	GO:0045893_positive regulation of DNA-templated transcription
+GO:0045910	2	negative regulation of DNA recombination	GO:0045910_negative regulation of DNA recombination
+GO:0046825	2	regulation of protein export from nucleus	GO:0046825_regulation of protein export from nucleus
+GO:0047150	2	betaine-homocysteine S-methyltransferase activity	GO:0047150_betaine-homocysteine S-methyltransferase activity
+GO:0047617	2	fatty acyl-CoA hydrolase activity	GO:0047617_fatty acyl-CoA hydrolase activity
+GO:0048037	2	obsolete cofactor binding	GO:0048037_obsolete cofactor binding
+GO:0048528	2	post-embryonic root development	GO:0048528_post-embryonic root development
+GO:0050796	2	regulation of insulin secretion	GO:0050796_regulation of insulin secretion
+GO:0051262	2	protein tetramerization	GO:0051262_protein tetramerization
+GO:0051968	2	positive regulation of synaptic transmission, glutamatergic	GO:0051968_positive regulation of synaptic transmission, glutamatergic
+GO:0052689	2	carboxylic ester hydrolase activity	GO:0052689_carboxylic ester hydrolase activity
+GO:0055088	2	lipid homeostasis	GO:0055088_lipid homeostasis
+GO:0070365	2	hepatocyte differentiation	GO:0070365_hepatocyte differentiation
+GO:0070409	2	carbamoyl phosphate biosynthetic process	GO:0070409_carbamoyl phosphate biosynthetic process
+GO:0070849	2	response to epidermal growth factor	GO:0070849_response to epidermal growth factor
+GO:0071320	2	cellular response to cAMP	GO:0071320_cellular response to cAMP
+GO:0102991	2	obsolete myristoyl-CoA hydrolase activity	GO:0102991_obsolete myristoyl-CoA hydrolase activity
+GO:1901653	2	cellular response to peptide	GO:1901653_cellular response to peptide
+GO:1903670	2	regulation of sprouting angiogenesis	GO:1903670_regulation of sprouting angiogenesis
+GO:1903718	2	NA	GO:1903718_NA
+GO:2000323	2	negative regulation of nuclear receptor-mediated glucocorticoid signaling pathway	GO:2000323_negative regulation of nuclear receptor-mediated glucocorticoid signaling pathway
+GO:0000054	1	ribosomal subunit export from nucleus	GO:0000054_ribosomal subunit export from nucleus
+GO:0000083	1	obsolete regulation of transcription involved in G1/S transition of mitotic cell cycle	GO:0000083_obsolete regulation of transcription involved in G1/S transition of mitotic cell cycle
+GO:0000086	1	G2/M transition of mitotic cell cycle	GO:0000086_G2/M transition of mitotic cell cycle
+GO:0000139	1	Golgi membrane	GO:0000139_Golgi membrane
+GO:0000151	1	ubiquitin ligase complex	GO:0000151_ubiquitin ligase complex
+GO:0000164	1	protein phosphatase type 1 complex	GO:0000164_protein phosphatase type 1 complex
+GO:0000166	1	nucleotide binding	GO:0000166_nucleotide binding
+GO:0000278	1	mitotic cell cycle	GO:0000278_mitotic cell cycle
+GO:0000470	1	maturation of LSU-rRNA	GO:0000470_maturation of LSU-rRNA
+GO:0000702	1	oxidized base lesion DNA N-glycosylase activity	GO:0000702_oxidized base lesion DNA N-glycosylase activity
+GO:0000773	1	phosphatidyl-N-methylethanolamine N-methyltransferase activity	GO:0000773_phosphatidyl-N-methylethanolamine N-methyltransferase activity
+GO:0000776	1	kinetochore	GO:0000776_kinetochore
+GO:0000786	1	nucleosome	GO:0000786_nucleosome
+GO:0000790	1	NA	GO:0000790_NA
+GO:0000976	1	transcription cis-regulatory region binding	GO:0000976_transcription cis-regulatory region binding
+GO:0000977	1	RNA polymerase II transcription regulatory region sequence-specific DNA binding	GO:0000977_RNA polymerase II transcription regulatory region sequence-specific DNA binding
+GO:0001030	1	NA	GO:0001030_NA
+GO:0001031	1	NA	GO:0001031_NA
+GO:0001032	1	NA	GO:0001032_NA
+GO:0001046	1	core promoter sequence-specific DNA binding	GO:0001046_core promoter sequence-specific DNA binding
+GO:0001156	1	TFIIIC-class transcription factor complex binding	GO:0001156_TFIIIC-class transcription factor complex binding
+GO:0001501	1	skeletal system development	GO:0001501_skeletal system development
+GO:0001541	1	ovarian follicle development	GO:0001541_ovarian follicle development
+GO:0001558	1	regulation of cell growth	GO:0001558_regulation of cell growth
+GO:0001669	1	acrosomal vesicle	GO:0001669_acrosomal vesicle
+GO:0001701	1	in utero embryonic development	GO:0001701_in utero embryonic development
+GO:0001746	1	Bolwig's organ morphogenesis	GO:0001746_Bolwig's organ morphogenesis
+GO:0001889	1	liver development	GO:0001889_liver development
+GO:0001932	1	regulation of protein phosphorylation	GO:0001932_regulation of protein phosphorylation
+GO:0001938	1	positive regulation of endothelial cell proliferation	GO:0001938_positive regulation of endothelial cell proliferation
+GO:0001959	1	regulation of cytokine-mediated signaling pathway	GO:0001959_regulation of cytokine-mediated signaling pathway
+GO:0002181	1	cytoplasmic translation	GO:0002181_cytoplasmic translation
+GO:0002244	1	hematopoietic progenitor cell differentiation	GO:0002244_hematopoietic progenitor cell differentiation
+GO:0002385	1	mucosal immune response	GO:0002385_mucosal immune response
+GO:0002526	1	acute inflammatory response	GO:0002526_acute inflammatory response
+GO:0002540	1	leukotriene production involved in inflammatory response	GO:0002540_leukotriene production involved in inflammatory response
+GO:0002755	1	MyD88-dependent toll-like receptor signaling pathway	GO:0002755_MyD88-dependent toll-like receptor signaling pathway
+GO:0003684	1	damaged DNA binding	GO:0003684_damaged DNA binding
+GO:0003690	1	double-stranded DNA binding	GO:0003690_double-stranded DNA binding
+GO:0003707	1	nuclear steroid receptor activity	GO:0003707_nuclear steroid receptor activity
+GO:0003712	1	transcription coregulator activity	GO:0003712_transcription coregulator activity
+GO:0003777	1	microtubule motor activity	GO:0003777_microtubule motor activity
+GO:0003779	1	actin binding	GO:0003779_actin binding
+GO:0003824	1	catalytic activity	GO:0003824_catalytic activity
+GO:0003846	1	2-acylglycerol O-acyltransferase activity	GO:0003846_2-acylglycerol O-acyltransferase activity
+GO:0003924	1	GTPase activity	GO:0003924_GTPase activity
+GO:0003997	1	acyl-CoA oxidase activity	GO:0003997_acyl-CoA oxidase activity
+GO:0004028	1	3-chloroallyl aldehyde dehydrogenase activity	GO:0004028_3-chloroallyl aldehyde dehydrogenase activity
+GO:0004029	1	aldehyde dehydrogenase (NAD+) activity	GO:0004029_aldehyde dehydrogenase (NAD+) activity
+GO:0004030	1	aldehyde dehydrogenase [NAD(P)+] activity	GO:0004030_aldehyde dehydrogenase [NAD(P)+] activity
+GO:0004045	1	peptidyl-tRNA hydrolase activity	GO:0004045_peptidyl-tRNA hydrolase activity
+GO:0004051	1	arachidonate 5-lipoxygenase activity	GO:0004051_arachidonate 5-lipoxygenase activity
+GO:0004070	1	aspartate carbamoyltransferase activity	GO:0004070_aspartate carbamoyltransferase activity
+GO:0004105	1	choline-phosphate cytidylyltransferase activity	GO:0004105_choline-phosphate cytidylyltransferase activity
+GO:0004144	1	diacylglycerol O-acyltransferase activity	GO:0004144_diacylglycerol O-acyltransferase activity
+GO:0004151	1	dihydroorotase activity	GO:0004151_dihydroorotase activity
+GO:0004175	1	endopeptidase activity	GO:0004175_endopeptidase activity
+GO:0004197	1	cysteine-type endopeptidase activity	GO:0004197_cysteine-type endopeptidase activity
+GO:0004198	1	calcium-dependent cysteine-type endopeptidase activity	GO:0004198_calcium-dependent cysteine-type endopeptidase activity
+GO:0004348	1	glucosylceramidase activity	GO:0004348_glucosylceramidase activity
+GO:0004354	1	glutamate dehydrogenase (NADP+) activity	GO:0004354_glutamate dehydrogenase (NADP+) activity
+GO:0004355	1	glutamate synthase (NADPH) activity	GO:0004355_glutamate synthase (NADPH) activity
+GO:0004386	1	helicase activity	GO:0004386_helicase activity
+GO:0004458	1	D-lactate dehydrogenase (cytochrome) activity	GO:0004458_D-lactate dehydrogenase (cytochrome) activity
+GO:0004465	1	lipoprotein lipase activity	GO:0004465_lipoprotein lipase activity
+GO:0004467	1	long-chain fatty acid-CoA ligase activity	GO:0004467_long-chain fatty acid-CoA ligase activity
+GO:0004491	1	methylmalonate-semialdehyde dehydrogenase (acylating, NAD) activity	GO:0004491_methylmalonate-semialdehyde dehydrogenase (acylating, NAD) activity
+GO:0004499	1	N,N-dimethylaniline monooxygenase activity	GO:0004499_N,N-dimethylaniline monooxygenase activity
+GO:0004505	1	phenylalanine 4-monooxygenase activity	GO:0004505_phenylalanine 4-monooxygenase activity
+GO:0004510	1	tryptophan 5-monooxygenase activity	GO:0004510_tryptophan 5-monooxygenase activity
+GO:0004512	1	inositol-3-phosphate synthase activity	GO:0004512_inositol-3-phosphate synthase activity
+GO:0004520	1	DNA endonuclease activity	GO:0004520_DNA endonuclease activity
+GO:0004557	1	alpha-galactosidase activity	GO:0004557_alpha-galactosidase activity
+GO:0004558	1	alpha-1,4-glucosidase activity	GO:0004558_alpha-1,4-glucosidase activity
+GO:0004608	1	phosphatidylethanolamine N-methyltransferase activity	GO:0004608_phosphatidylethanolamine N-methyltransferase activity
+GO:0004647	1	NA	GO:0004647_NA
+GO:0004648	1	O-phospho-L-serine:2-oxoglutarate aminotransferase activity	GO:0004648_O-phospho-L-serine:2-oxoglutarate aminotransferase activity
+GO:0004653	1	polypeptide N-acetylgalactosaminyltransferase activity	GO:0004653_polypeptide N-acetylgalactosaminyltransferase activity
+GO:0004745	1	all-trans-retinol dehydrogenase (NAD+) activity	GO:0004745_all-trans-retinol dehydrogenase (NAD+) activity
+GO:0004753	1	saccharopine dehydrogenase activity	GO:0004753_saccharopine dehydrogenase activity
+GO:0004768	1	stearoyl-CoA 9-desaturase activity	GO:0004768_stearoyl-CoA 9-desaturase activity
+GO:0005112	1	Notch binding	GO:0005112_Notch binding
+GO:0005201	1	extracellular matrix structural constituent	GO:0005201_extracellular matrix structural constituent
+GO:0005215	1	transporter activity	GO:0005215_transporter activity
+GO:0005242	1	inward rectifier potassium channel activity	GO:0005242_inward rectifier potassium channel activity
+GO:0005249	1	voltage-gated potassium channel activity	GO:0005249_voltage-gated potassium channel activity
+GO:0005261	1	monoatomic cation channel activity	GO:0005261_monoatomic cation channel activity
+GO:0005262	1	calcium channel activity	GO:0005262_calcium channel activity
+GO:0005267	1	potassium channel activity	GO:0005267_potassium channel activity
+GO:0005319	1	lipid transporter activity	GO:0005319_lipid transporter activity
+GO:0005366	1	myo-inositol:proton symporter activity	GO:0005366_myo-inositol:proton symporter activity
+GO:0005384	1	manganese ion transmembrane transporter activity	GO:0005384_manganese ion transmembrane transporter activity
+GO:0005385	1	zinc ion transmembrane transporter activity	GO:0005385_zinc ion transmembrane transporter activity
+GO:0005432	1	calcium:sodium antiporter activity	GO:0005432_calcium:sodium antiporter activity
+GO:0005436	1	sodium:phosphate symporter activity	GO:0005436_sodium:phosphate symporter activity
+GO:0005504	1	fatty acid binding	GO:0005504_fatty acid binding
+GO:0005516	1	calmodulin binding	GO:0005516_calmodulin binding
+GO:0005542	1	folic acid binding	GO:0005542_folic acid binding
+GO:0005543	1	phospholipid binding	GO:0005543_phospholipid binding
+GO:0005604	1	basement membrane	GO:0005604_basement membrane
+GO:0005641	1	nuclear envelope lumen	GO:0005641_nuclear envelope lumen
+GO:0005642	1	annulate lamellae	GO:0005642_annulate lamellae
+GO:0005643	1	nuclear pore	GO:0005643_nuclear pore
+GO:0005719	1	NA	GO:0005719_NA
+GO:0005741	1	mitochondrial outer membrane	GO:0005741_mitochondrial outer membrane
+GO:0005743	1	mitochondrial inner membrane	GO:0005743_mitochondrial inner membrane
+GO:0005762	1	mitochondrial large ribosomal subunit	GO:0005762_mitochondrial large ribosomal subunit
+GO:0005768	1	endosome	GO:0005768_endosome
+GO:0005777	1	peroxisome	GO:0005777_peroxisome
+GO:0005778	1	peroxisomal membrane	GO:0005778_peroxisomal membrane
+GO:0005802	1	trans-Golgi network	GO:0005802_trans-Golgi network
+GO:0005811	1	lipid droplet	GO:0005811_lipid droplet
+GO:0005813	1	centrosome	GO:0005813_centrosome
+GO:0005814	1	centriole	GO:0005814_centriole
+GO:0005903	1	brush border	GO:0005903_brush border
+GO:0005913	1	NA	GO:0005913_NA
+GO:0005925	1	focal adhesion	GO:0005925_focal adhesion
+GO:0005930	1	axoneme	GO:0005930_axoneme
+GO:0005938	1	cell cortex	GO:0005938_cell cortex
+GO:0005951	1	carbamoyl-phosphate synthase complex	GO:0005951_carbamoyl-phosphate synthase complex
+GO:0005956	1	protein kinase CK2 complex	GO:0005956_protein kinase CK2 complex
+GO:0005977	1	glycogen metabolic process	GO:0005977_glycogen metabolic process
+GO:0005981	1	regulation of glycogen catabolic process	GO:0005981_regulation of glycogen catabolic process
+GO:0006021	1	inositol biosynthetic process	GO:0006021_inositol biosynthetic process
+GO:0006066	1	alcohol metabolic process	GO:0006066_alcohol metabolic process
+GO:0006068	1	ethanol catabolic process	GO:0006068_ethanol catabolic process
+GO:0006094	1	gluconeogenesis	GO:0006094_gluconeogenesis
+GO:0006107	1	oxaloacetate metabolic process	GO:0006107_oxaloacetate metabolic process
+GO:0006111	1	regulation of gluconeogenesis	GO:0006111_regulation of gluconeogenesis
+GO:0006210	1	thymine catabolic process	GO:0006210_thymine catabolic process
+GO:0006284	1	base-excision repair	GO:0006284_base-excision repair
+GO:0006285	1	base-excision repair, AP site formation	GO:0006285_base-excision repair, AP site formation
+GO:0006334	1	nucleosome assembly	GO:0006334_nucleosome assembly
+GO:0006366	1	transcription by RNA polymerase II	GO:0006366_transcription by RNA polymerase II
+GO:0006412	1	translation	GO:0006412_translation
+GO:0006468	1	protein phosphorylation	GO:0006468_protein phosphorylation
+GO:0006511	1	ubiquitin-dependent protein catabolic process	GO:0006511_ubiquitin-dependent protein catabolic process
+GO:0006526	1	L-arginine biosynthetic process	GO:0006526_L-arginine biosynthetic process
+GO:0006534	1	cysteine metabolic process	GO:0006534_cysteine metabolic process
+GO:0006536	1	glutamate metabolic process	GO:0006536_glutamate metabolic process
+GO:0006544	1	glycine metabolic process	GO:0006544_glycine metabolic process
+GO:0006548	1	L-histidine catabolic process	GO:0006548_L-histidine catabolic process
+GO:0006559	1	L-phenylalanine catabolic process	GO:0006559_L-phenylalanine catabolic process
+GO:0006563	1	L-serine metabolic process	GO:0006563_L-serine metabolic process
+GO:0006571	1	L-tyrosine biosynthetic process	GO:0006571_L-tyrosine biosynthetic process
+GO:0006573	1	valine metabolic process	GO:0006573_valine metabolic process
+GO:0006574	1	L-valine catabolic process	GO:0006574_L-valine catabolic process
+GO:0006629	1	lipid metabolic process	GO:0006629_lipid metabolic process
+GO:0006680	1	glucosylceramide catabolic process	GO:0006680_glucosylceramide catabolic process
+GO:0006691	1	leukotriene metabolic process	GO:0006691_leukotriene metabolic process
+GO:0006699	1	bile acid biosynthetic process	GO:0006699_bile acid biosynthetic process
+GO:0006707	1	cholesterol catabolic process	GO:0006707_cholesterol catabolic process
+GO:0006726	1	eye pigment biosynthetic process	GO:0006726_eye pigment biosynthetic process
+GO:0006730	1	one-carbon metabolic process	GO:0006730_one-carbon metabolic process
+GO:0006749	1	glutathione metabolic process	GO:0006749_glutathione metabolic process
+GO:0006805	1	xenobiotic metabolic process	GO:0006805_xenobiotic metabolic process
+GO:0006811	1	monoatomic ion transport	GO:0006811_monoatomic ion transport
+GO:0006813	1	potassium ion transport	GO:0006813_potassium ion transport
+GO:0006817	1	phosphate ion transport	GO:0006817_phosphate ion transport
+GO:0006826	1	iron ion transport	GO:0006826_iron ion transport
+GO:0006829	1	zinc ion transport	GO:0006829_zinc ion transport
+GO:0006851	1	mitochondrial calcium ion transmembrane transport	GO:0006851_mitochondrial calcium ion transmembrane transport
+GO:0006882	1	intracellular zinc ion homeostasis	GO:0006882_intracellular zinc ion homeostasis
+GO:0006895	1	Golgi to endosome transport	GO:0006895_Golgi to endosome transport
+GO:0006915	1	apoptotic process	GO:0006915_apoptotic process
+GO:0006954	1	inflammatory response	GO:0006954_inflammatory response
+GO:0006975	1	NA	GO:0006975_NA
+GO:0006979	1	response to oxidative stress	GO:0006979_response to oxidative stress
+GO:0007005	1	mitochondrion organization	GO:0007005_mitochondrion organization
+GO:0007018	1	microtubule-based movement	GO:0007018_microtubule-based movement
+GO:0007155	1	cell adhesion	GO:0007155_cell adhesion
+GO:0007156	1	homophilic cell-cell adhesion	GO:0007156_homophilic cell-cell adhesion
+GO:0007157	1	heterophilic cell-cell adhesion	GO:0007157_heterophilic cell-cell adhesion
+GO:0007158	1	neuron cell-cell adhesion	GO:0007158_neuron cell-cell adhesion
+GO:0007179	1	transforming growth factor beta receptor signaling pathway	GO:0007179_transforming growth factor beta receptor signaling pathway
+GO:0007220	1	Notch receptor processing	GO:0007220_Notch receptor processing
+GO:0007224	1	smoothened signaling pathway	GO:0007224_smoothened signaling pathway
+GO:0007267	1	cell-cell signaling	GO:0007267_cell-cell signaling
+GO:0007280	1	obsolete pole cell migration	GO:0007280_obsolete pole cell migration
+GO:0007286	1	spermatid development	GO:0007286_spermatid development
+GO:0007346	1	regulation of mitotic cell cycle	GO:0007346_regulation of mitotic cell cycle
+GO:0007367	1	segment polarity determination	GO:0007367_segment polarity determination
+GO:0007368	1	determination of left/right symmetry	GO:0007368_determination of left/right symmetry
+GO:0007399	1	nervous system development	GO:0007399_nervous system development
+GO:0007411	1	axon guidance	GO:0007411_axon guidance
+GO:0007418	1	ventral midline development	GO:0007418_ventral midline development
+GO:0007427	1	epithelial cell migration, open tracheal system	GO:0007427_epithelial cell migration, open tracheal system
+GO:0007442	1	hindgut morphogenesis	GO:0007442_hindgut morphogenesis
+GO:0007458	1	progression of morphogenetic furrow involved in compound eye morphogenesis	GO:0007458_progression of morphogenetic furrow involved in compound eye morphogenesis
+GO:0007476	1	imaginal disc-derived wing morphogenesis	GO:0007476_imaginal disc-derived wing morphogenesis
+GO:0007494	1	midgut development	GO:0007494_midgut development
+GO:0007506	1	gonadal mesoderm development	GO:0007506_gonadal mesoderm development
+GO:0007568	1	obsolete aging	GO:0007568_obsolete aging
+GO:0007586	1	digestion	GO:0007586_digestion
+GO:0007616	1	long-term memory	GO:0007616_long-term memory
+GO:0008020	1	G protein-coupled photoreceptor activity	GO:0008020_G protein-coupled photoreceptor activity
+GO:0008234	1	cysteine-type peptidase activity	GO:0008234_cysteine-type peptidase activity
+GO:0008271	1	secondary active sulfate transmembrane transporter activity	GO:0008271_secondary active sulfate transmembrane transporter activity
+GO:0008272	1	obsolete sulfate transport	GO:0008272_obsolete sulfate transport
+GO:0008306	1	associative learning	GO:0008306_associative learning
+GO:0008307	1	structural constituent of muscle	GO:0008307_structural constituent of muscle
+GO:0008347	1	glial cell migration	GO:0008347_glial cell migration
+GO:0008361	1	regulation of cell size	GO:0008361_regulation of cell size
+GO:0008395	1	steroid hydroxylase activity	GO:0008395_steroid hydroxylase activity
+GO:0008456	1	alpha-N-acetylgalactosaminidase activity	GO:0008456_alpha-N-acetylgalactosaminidase activity
+GO:0008509	1	monoatomic anion transmembrane transporter activity	GO:0008509_monoatomic anion transmembrane transporter activity
+GO:0008534	1	oxidized purine nucleobase lesion DNA N-glycosylase activity	GO:0008534_oxidized purine nucleobase lesion DNA N-glycosylase activity
+GO:0008565	1	obsolete protein transporter activity	GO:0008565_obsolete protein transporter activity
+GO:0008593	1	regulation of Notch signaling pathway	GO:0008593_regulation of Notch signaling pathway
+GO:0008643	1	carbohydrate transport	GO:0008643_carbohydrate transport
+GO:0008654	1	phospholipid biosynthetic process	GO:0008654_phospholipid biosynthetic process
+GO:0008705	1	methionine synthase activity	GO:0008705_methionine synthase activity
+GO:0008757	1	S-adenosylmethionine-dependent methyltransferase activity	GO:0008757_S-adenosylmethionine-dependent methyltransferase activity
+GO:0008801	1	beta-phosphoglucomutase activity	GO:0008801_beta-phosphoglucomutase activity
+GO:0009001	1	serine O-acetyltransferase activity	GO:0009001_serine O-acetyltransferase activity
+GO:0009055	1	electron transfer activity	GO:0009055_electron transfer activity
+GO:0009060	1	aerobic respiration	GO:0009060_aerobic respiration
+GO:0009061	1	anaerobic respiration	GO:0009061_anaerobic respiration
+GO:0009311	1	oligosaccharide metabolic process	GO:0009311_oligosaccharide metabolic process
+GO:0009314	1	response to radiation	GO:0009314_response to radiation
+GO:0009346	1	ATP-independent citrate lyase complex	GO:0009346_ATP-independent citrate lyase complex
+GO:0009411	1	response to UV	GO:0009411_response to UV
+GO:0009416	1	response to light stimulus	GO:0009416_response to light stimulus
+GO:0009749	1	response to glucose	GO:0009749_response to glucose
+GO:0009922	1	fatty acid elongase activity	GO:0009922_fatty acid elongase activity
+GO:0009986	1	cell surface	GO:0009986_cell surface
+GO:0010043	1	response to zinc ion	GO:0010043_response to zinc ion
+GO:0010265	1	SCF complex assembly	GO:0010265_SCF complex assembly
+GO:0010494	1	cytoplasmic stress granule	GO:0010494_cytoplasmic stress granule
+GO:0010629	1	negative regulation of gene expression	GO:0010629_negative regulation of gene expression
+GO:0010800	1	positive regulation of peptidyl-threonine phosphorylation	GO:0010800_positive regulation of peptidyl-threonine phosphorylation
+GO:0010824	1	regulation of centrosome duplication	GO:0010824_regulation of centrosome duplication
+GO:0010917	1	negative regulation of mitochondrial membrane potential	GO:0010917_negative regulation of mitochondrial membrane potential
+GO:0010940	1	obsolete positive regulation of necrotic cell death	GO:0010940_obsolete positive regulation of necrotic cell death
+GO:0010972	1	negative regulation of G2/M transition of mitotic cell cycle	GO:0010972_negative regulation of G2/M transition of mitotic cell cycle
+GO:0014069	1	postsynaptic density	GO:0014069_postsynaptic density
+GO:0014075	1	response to amine	GO:0014075_response to amine
+GO:0014718	1	positive regulation of satellite cell activation involved in skeletal muscle regeneration	GO:0014718_positive regulation of satellite cell activation involved in skeletal muscle regeneration
+GO:0014850	1	response to muscle activity	GO:0014850_response to muscle activity
+GO:0015030	1	Cajal body	GO:0015030_Cajal body
+GO:0015093	1	ferrous iron transmembrane transporter activity	GO:0015093_ferrous iron transmembrane transporter activity
+GO:0015116	1	sulfate transmembrane transporter activity	GO:0015116_sulfate transmembrane transporter activity
+GO:0015175	1	neutral L-amino acid transmembrane transporter activity	GO:0015175_neutral L-amino acid transmembrane transporter activity
+GO:0015184	1	L-cystine transmembrane transporter activity	GO:0015184_L-cystine transmembrane transporter activity
+GO:0015293	1	symporter activity	GO:0015293_symporter activity
+GO:0015301	1	obsolete anion:anion antiporter activity	GO:0015301_obsolete anion:anion antiporter activity
+GO:0015321	1	NA	GO:0015321_NA
+GO:0015804	1	neutral amino acid transport	GO:0015804_neutral amino acid transport
+GO:0015811	1	L-cystine transport	GO:0015811_L-cystine transport
+GO:0016015	1	morphogen activity	GO:0016015_morphogen activity
+GO:0016042	1	lipid catabolic process	GO:0016042_lipid catabolic process
+GO:0016055	1	Wnt signaling pathway	GO:0016055_Wnt signaling pathway
+GO:0016125	1	sterol metabolic process	GO:0016125_sterol metabolic process
+GO:0016139	1	glycoside catabolic process	GO:0016139_glycoside catabolic process
+GO:0016150	1	translation release factor activity, codon nonspecific	GO:0016150_translation release factor activity, codon nonspecific
+GO:0016153	1	urocanate hydratase activity	GO:0016153_urocanate hydratase activity
+GO:0016298	1	lipase activity	GO:0016298_lipase activity
+GO:0016301	1	kinase activity	GO:0016301_kinase activity
+GO:0016335	1	morphogenesis of larval imaginal disc epithelium	GO:0016335_morphogenesis of larval imaginal disc epithelium
+GO:0016513	1	core-binding factor complex	GO:0016513_core-binding factor complex
+GO:0016539	1	intein-mediated protein splicing	GO:0016539_intein-mediated protein splicing
+GO:0016584	1	obsolete nucleosome positioning	GO:0016584_obsolete nucleosome positioning
+GO:0016594	1	glycine binding	GO:0016594_glycine binding
+GO:0016605	1	PML body	GO:0016605_PML body
+GO:0016607	1	nuclear speck	GO:0016607_nuclear speck
+GO:0016787	1	hydrolase activity	GO:0016787_hydrolase activity
+GO:0016791	1	phosphatase activity	GO:0016791_phosphatase activity
+GO:0016901	1	oxidoreductase activity, acting on the CH-OH group of donors, quinone or similar compound as acceptor	GO:0016901_oxidoreductase activity, acting on the CH-OH group of donors, quinone or similar compound as acceptor
+GO:0017053	1	transcription repressor complex	GO:0017053_transcription repressor complex
+GO:0017168	1	5-oxoprolinase (ATP-hydrolyzing) activity	GO:0017168_5-oxoprolinase (ATP-hydrolyzing) activity
+GO:0017174	1	glycine N-methyltransferase activity	GO:0017174_glycine N-methyltransferase activity
+GO:0018105	1	peptidyl-serine phosphorylation	GO:0018105_peptidyl-serine phosphorylation
+GO:0018243	1	obsolete protein O-linked glycosylation via threonine	GO:0018243_obsolete protein O-linked glycosylation via threonine
+GO:0018478	1	malonate-semialdehyde dehydrogenase (acetylating) activity	GO:0018478_malonate-semialdehyde dehydrogenase (acetylating) activity
+GO:0019005	1	SCF ubiquitin ligase complex	GO:0019005_SCF ubiquitin ligase complex
+GO:0019104	1	DNA N-glycosylase activity	GO:0019104_DNA N-glycosylase activity
+GO:0019221	1	cytokine-mediated signaling pathway	GO:0019221_cytokine-mediated signaling pathway
+GO:0019344	1	cysteine biosynthetic process	GO:0019344_cysteine biosynthetic process
+GO:0019367	1	fatty acid elongation, saturated fatty acid	GO:0019367_fatty acid elongation, saturated fatty acid
+GO:0019370	1	leukotriene biosynthetic process	GO:0019370_leukotriene biosynthetic process
+GO:0019372	1	lipoxygenase pathway	GO:0019372_lipoxygenase pathway
+GO:0019433	1	triglyceride catabolic process	GO:0019433_triglyceride catabolic process
+GO:0019516	1	obsolete lactate oxidation	GO:0019516_obsolete lactate oxidation
+GO:0019556	1	L-histidine catabolic process to glutamate and formamide	GO:0019556_L-histidine catabolic process to glutamate and formamide
+GO:0019557	1	L-histidine catabolic process to glutamate and formate	GO:0019557_L-histidine catabolic process to glutamate and formate
+GO:0019878	1	lysine biosynthetic process via aminoadipic acid	GO:0019878_lysine biosynthetic process via aminoadipic acid
+GO:0019888	1	protein phosphatase regulator activity	GO:0019888_protein phosphatase regulator activity
+GO:0019902	1	phosphatase binding	GO:0019902_phosphatase binding
+GO:0019915	1	lipid storage	GO:0019915_lipid storage
+GO:0019964	1	type II interferon binding	GO:0019964_type II interferon binding
+GO:0021960	1	anterior commissure morphogenesis	GO:0021960_anterior commissure morphogenesis
+GO:0022029	1	telencephalon cell migration	GO:0022029_telencephalon cell migration
+GO:0022408	1	negative regulation of cell-cell adhesion	GO:0022408_negative regulation of cell-cell adhesion
+GO:0022625	1	cytosolic large ribosomal subunit	GO:0022625_cytosolic large ribosomal subunit
+GO:0022627	1	cytosolic small ribosomal subunit	GO:0022627_cytosolic small ribosomal subunit
+GO:0022904	1	respiratory electron transport chain	GO:0022904_respiratory electron transport chain
+GO:0030001	1	metal ion transport	GO:0030001_metal ion transport
+GO:0030016	1	myofibril	GO:0030016_myofibril
+GO:0030018	1	Z disc	GO:0030018_Z disc
+GO:0030027	1	lamellipodium	GO:0030027_lamellipodium
+GO:0030054	1	cell junction	GO:0030054_cell junction
+GO:0030061	1	mitochondrial crista	GO:0030061_mitochondrial crista
+GO:0030097	1	hemopoiesis	GO:0030097_hemopoiesis
+GO:0030099	1	myeloid cell differentiation	GO:0030099_myeloid cell differentiation
+GO:0030111	1	regulation of Wnt signaling pathway	GO:0030111_regulation of Wnt signaling pathway
+GO:0030139	1	endocytic vesicle	GO:0030139_endocytic vesicle
+GO:0030145	1	manganese ion binding	GO:0030145_manganese ion binding
+GO:0030154	1	cell differentiation	GO:0030154_cell differentiation
+GO:0030176	1	obsolete integral component of endoplasmic reticulum membrane	GO:0030176_obsolete integral component of endoplasmic reticulum membrane
+GO:0030182	1	neuron differentiation	GO:0030182_neuron differentiation
+GO:0030198	1	extracellular matrix organization	GO:0030198_extracellular matrix organization
+GO:0030239	1	myofibril assembly	GO:0030239_myofibril assembly
+GO:0030246	1	carbohydrate binding	GO:0030246_carbohydrate binding
+GO:0030261	1	chromosome condensation	GO:0030261_chromosome condensation
+GO:0030282	1	bone mineralization	GO:0030282_bone mineralization
+GO:0030291	1	protein serine/threonine kinase inhibitor activity	GO:0030291_protein serine/threonine kinase inhibitor activity
+GO:0030295	1	protein kinase activator activity	GO:0030295_protein kinase activator activity
+GO:0030307	1	positive regulation of cell growth	GO:0030307_positive regulation of cell growth
+GO:0030315	1	T-tubule	GO:0030315_T-tubule
+GO:0030332	1	cyclin binding	GO:0030332_cyclin binding
+GO:0030374	1	obsolete nuclear receptor coactivator activity	GO:0030374_obsolete nuclear receptor coactivator activity
+GO:0030424	1	axon	GO:0030424_axon
+GO:0030425	1	dendrite	GO:0030425_dendrite
+GO:0030643	1	intracellular phosphate ion homeostasis	GO:0030643_intracellular phosphate ion homeostasis
+GO:0030667	1	secretory granule membrane	GO:0030667_secretory granule membrane
+GO:0030670	1	phagocytic vesicle membrane	GO:0030670_phagocytic vesicle membrane
+GO:0030674	1	protein-macromolecule adaptor activity	GO:0030674_protein-macromolecule adaptor activity
+GO:0030853	1	negative regulation of granulocyte differentiation	GO:0030853_negative regulation of granulocyte differentiation
+GO:0030854	1	positive regulation of granulocyte differentiation	GO:0030854_positive regulation of granulocyte differentiation
+GO:0031065	1	obsolete positive regulation of histone deacetylation	GO:0031065_obsolete positive regulation of histone deacetylation
+GO:0031146	1	SCF-dependent proteasomal ubiquitin-dependent protein catabolic process	GO:0031146_SCF-dependent proteasomal ubiquitin-dependent protein catabolic process
+GO:0031210	1	phosphatidylcholine binding	GO:0031210_phosphatidylcholine binding
+GO:0031234	1	extrinsic component of cytoplasmic side of plasma membrane	GO:0031234_extrinsic component of cytoplasmic side of plasma membrane
+GO:0031297	1	replication fork processing	GO:0031297_replication fork processing
+GO:0031410	1	cytoplasmic vesicle	GO:0031410_cytoplasmic vesicle
+GO:0031419	1	cobalamin binding	GO:0031419_cobalamin binding
+GO:0031432	1	titin binding	GO:0031432_titin binding
+GO:0031463	1	Cul3-RING ubiquitin ligase complex	GO:0031463_Cul3-RING ubiquitin ligase complex
+GO:0031492	1	nucleosomal DNA binding	GO:0031492_nucleosomal DNA binding
+GO:0031528	1	microvillus membrane	GO:0031528_microvillus membrane
+GO:0031669	1	cellular response to nutrient levels	GO:0031669_cellular response to nutrient levels
+GO:0031929	1	TOR signaling	GO:0031929_TOR signaling
+GO:0031931	1	TORC1 complex	GO:0031931_TORC1 complex
+GO:0031936	1	obsolete negative regulation of chromatin silencing	GO:0031936_obsolete negative regulation of chromatin silencing
+GO:0031966	1	mitochondrial membrane	GO:0031966_mitochondrial membrane
+GO:0032008	1	positive regulation of TOR signaling	GO:0032008_positive regulation of TOR signaling
+GO:0032024	1	positive regulation of insulin secretion	GO:0032024_positive regulation of insulin secretion
+GO:0032094	1	response to food	GO:0032094_response to food
+GO:0032154	1	cleavage furrow	GO:0032154_cleavage furrow
+GO:0032259	1	methylation	GO:0032259_methylation
+GO:0032355	1	response to estradiol	GO:0032355_response to estradiol
+GO:0032357	1	oxidized purine DNA binding	GO:0032357_oxidized purine DNA binding
+GO:0032450	1	obsolete maltose alpha-glucosidase activity	GO:0032450_obsolete maltose alpha-glucosidase activity
+GO:0032508	1	obsolete DNA duplex unwinding	GO:0032508_obsolete DNA duplex unwinding
+GO:0032579	1	apical lamina of hyaline layer	GO:0032579_apical lamina of hyaline layer
+GO:0032592	1	obsolete integral component of mitochondrial membrane	GO:0032592_obsolete integral component of mitochondrial membrane
+GO:0032743	1	positive regulation of interleukin-2 production	GO:0032743_positive regulation of interleukin-2 production
+GO:0032868	1	response to insulin	GO:0032868_response to insulin
+GO:0032947	1	NA	GO:0032947_NA
+GO:0033138	1	positive regulation of peptidyl-serine phosphorylation	GO:0033138_positive regulation of peptidyl-serine phosphorylation
+GO:0033146	1	regulation of intracellular estrogen receptor signaling pathway	GO:0033146_regulation of intracellular estrogen receptor signaling pathway
+GO:0033234	1	negative regulation of protein sumoylation	GO:0033234_negative regulation of protein sumoylation
+GO:0033512	1	L-lysine catabolic process to acetyl-CoA via saccharopine	GO:0033512_L-lysine catabolic process to acetyl-CoA via saccharopine
+GO:0033540	1	fatty acid beta-oxidation using acyl-CoA oxidase	GO:0033540_fatty acid beta-oxidation using acyl-CoA oxidase
+GO:0033613	1	NA	GO:0033613_NA
+GO:0033683	1	obsolete nucleotide-excision repair, DNA incision	GO:0033683_obsolete nucleotide-excision repair, DNA incision
+GO:0033781	1	cholesterol 24-hydroxylase activity	GO:0033781_cholesterol 24-hydroxylase activity
+GO:0034039	1	8-oxo-7,8-dihydroguanine DNA N-glycosylase activity	GO:0034039_8-oxo-7,8-dihydroguanine DNA N-glycosylase activity
+GO:0034134	1	toll-like receptor 2 signaling pathway	GO:0034134_toll-like receptor 2 signaling pathway
+GO:0034201	1	response to oleic acid	GO:0034201_response to oleic acid
+GO:0034399	1	nuclear periphery	GO:0034399_nuclear periphery
+GO:0034504	1	protein localization to nucleus	GO:0034504_protein localization to nucleus
+GO:0034625	1	fatty acid elongation, monounsaturated fatty acid	GO:0034625_fatty acid elongation, monounsaturated fatty acid
+GO:0034626	1	fatty acid elongation, polyunsaturated fatty acid	GO:0034626_fatty acid elongation, polyunsaturated fatty acid
+GO:0034708	1	methyltransferase complex	GO:0034708_methyltransferase complex
+GO:0034765	1	regulation of monoatomic ion transmembrane transport	GO:0034765_regulation of monoatomic ion transmembrane transport
+GO:0034774	1	secretory granule lumen	GO:0034774_secretory granule lumen
+GO:0035019	1	somatic stem cell population maintenance	GO:0035019_somatic stem cell population maintenance
+GO:0035067	1	obsolete negative regulation of histone acetylation	GO:0035067_obsolete negative regulation of histone acetylation
+GO:0035154	1	terminal cell fate specification, open tracheal system	GO:0035154_terminal cell fate specification, open tracheal system
+GO:0035217	1	labial disc development	GO:0035217_labial disc development
+GO:0035222	1	wing disc pattern formation	GO:0035222_wing disc pattern formation
+GO:0035224	1	genital disc anterior/posterior pattern formation	GO:0035224_genital disc anterior/posterior pattern formation
+GO:0035231	1	cytoneme assembly	GO:0035231_cytoneme assembly
+GO:0035257	1	NA	GO:0035257_NA
+GO:0035277	1	spiracle morphogenesis, open tracheal system	GO:0035277_spiracle morphogenesis, open tracheal system
+GO:0035338	1	long-chain fatty-acyl-CoA biosynthetic process	GO:0035338_long-chain fatty-acyl-CoA biosynthetic process
+GO:0035556	1	intracellular signal transduction	GO:0035556_intracellular signal transduction
+GO:0035578	1	azurophil granule lumen	GO:0035578_azurophil granule lumen
+GO:0035579	1	specific granule membrane	GO:0035579_specific granule membrane
+GO:0035641	1	locomotory exploration behavior	GO:0035641_locomotory exploration behavior
+GO:0035655	1	interleukin-18-mediated signaling pathway	GO:0035655_interleukin-18-mediated signaling pathway
+GO:0035794	1	positive regulation of mitochondrial membrane permeability	GO:0035794_positive regulation of mitochondrial membrane permeability
+GO:0036126	1	sperm flagellum	GO:0036126_sperm flagellum
+GO:0036156	1	inner dynein arm	GO:0036156_inner dynein arm
+GO:0036267	1	invasive filamentous growth	GO:0036267_invasive filamentous growth
+GO:0036292	1	obsolete DNA rewinding	GO:0036292_obsolete DNA rewinding
+GO:0036310	1	ATP-dependent DNA/DNA annealing activity	GO:0036310_ATP-dependent DNA/DNA annealing activity
+GO:0038023	1	signaling receptor activity	GO:0038023_signaling receptor activity
+GO:0038202	1	TORC1 signaling	GO:0038202_TORC1 signaling
+GO:0042176	1	regulation of protein catabolic process	GO:0042176_regulation of protein catabolic process
+GO:0042254	1	ribosome biogenesis	GO:0042254_ribosome biogenesis
+GO:0042301	1	phosphate ion binding	GO:0042301_phosphate ion binding
+GO:0042311	1	vasodilation	GO:0042311_vasodilation
+GO:0042325	1	regulation of phosphorylation	GO:0042325_regulation of phosphorylation
+GO:0042391	1	regulation of membrane potential	GO:0042391_regulation of membrane potential
+GO:0042427	1	serotonin biosynthetic process	GO:0042427_serotonin biosynthetic process
+GO:0042558	1	pteridine-containing compound metabolic process	GO:0042558_pteridine-containing compound metabolic process
+GO:0042572	1	retinol metabolic process	GO:0042572_retinol metabolic process
+GO:0042574	1	retinal metabolic process	GO:0042574_retinal metabolic process
+GO:0042594	1	response to starvation	GO:0042594_response to starvation
+GO:0042605	1	peptide antigen binding	GO:0042605_peptide antigen binding
+GO:0042645	1	mitochondrial nucleoid	GO:0042645_mitochondrial nucleoid
+GO:0042759	1	long-chain fatty acid biosynthetic process	GO:0042759_long-chain fatty acid biosynthetic process
+GO:0042761	1	very long-chain fatty acid biosynthetic process	GO:0042761_very long-chain fatty acid biosynthetic process
+GO:0042788	1	obsolete polysomal ribosome	GO:0042788_obsolete polysomal ribosome
+GO:0042826	1	histone deacetylase binding	GO:0042826_histone deacetylase binding
+GO:0042995	1	cell projection	GO:0042995_cell projection
+GO:0043005	1	neuron projection	GO:0043005_neuron projection
+GO:0043065	1	positive regulation of apoptotic process	GO:0043065_positive regulation of apoptotic process
+GO:0043122	1	regulation of canonical NF-kappaB signal transduction	GO:0043122_regulation of canonical NF-kappaB signal transduction
+GO:0043161	1	proteasome-mediated ubiquitin-dependent protein catabolic process	GO:0043161_proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043200	1	response to amino acid	GO:0043200_response to amino acid
+GO:0043204	1	perikaryon	GO:0043204_perikaryon
+GO:0043209	1	myelin sheath	GO:0043209_myelin sheath
+GO:0043371	1	negative regulation of CD4-positive, alpha-beta T cell differentiation	GO:0043371_negative regulation of CD4-positive, alpha-beta T cell differentiation
+GO:0043378	1	positive regulation of CD8-positive, alpha-beta T cell differentiation	GO:0043378_positive regulation of CD8-positive, alpha-beta T cell differentiation
+GO:0043565	1	sequence-specific DNA binding	GO:0043565_sequence-specific DNA binding
+GO:0043596	1	nuclear replication fork	GO:0043596_nuclear replication fork
+GO:0043616	1	keratinocyte proliferation	GO:0043616_keratinocyte proliferation
+GO:0043627	1	response to estrogen	GO:0043627_response to estrogen
+GO:0043679	1	axon terminus	GO:0043679_axon terminus
+GO:0043687	1	post-translational protein modification	GO:0043687_post-translational protein modification
+GO:0044255	1	obsolete cellular lipid metabolic process	GO:0044255_obsolete cellular lipid metabolic process
+GO:0044297	1	cell body	GO:0044297_cell body
+GO:0044341	1	sodium-dependent phosphate transport	GO:0044341_sodium-dependent phosphate transport
+GO:0044344	1	cellular response to fibroblast growth factor stimulus	GO:0044344_cellular response to fibroblast growth factor stimulus
+GO:0045168	1	cell-cell signaling involved in cell fate commitment	GO:0045168_cell-cell signaling involved in cell fate commitment
+GO:0045169	1	fusome	GO:0045169_fusome
+GO:0045214	1	sarcomere organization	GO:0045214_sarcomere organization
+GO:0045503	1	dynein light chain binding	GO:0045503_dynein light chain binding
+GO:0045504	1	dynein heavy chain binding	GO:0045504_dynein heavy chain binding
+GO:0045589	1	regulation of regulatory T cell differentiation	GO:0045589_regulation of regulatory T cell differentiation
+GO:0045616	1	regulation of keratinocyte differentiation	GO:0045616_regulation of keratinocyte differentiation
+GO:0045637	1	regulation of myeloid cell differentiation	GO:0045637_regulation of myeloid cell differentiation
+GO:0045652	1	regulation of megakaryocyte differentiation	GO:0045652_regulation of megakaryocyte differentiation
+GO:0045672	1	positive regulation of osteoclast differentiation	GO:0045672_positive regulation of osteoclast differentiation
+GO:0045721	1	negative regulation of gluconeogenesis	GO:0045721_negative regulation of gluconeogenesis
+GO:0045744	1	negative regulation of G protein-coupled receptor signaling pathway	GO:0045744_negative regulation of G protein-coupled receptor signaling pathway
+GO:0045766	1	positive regulation of angiogenesis	GO:0045766_positive regulation of angiogenesis
+GO:0045861	1	negative regulation of proteolysis	GO:0045861_negative regulation of proteolysis
+GO:0045862	1	positive regulation of proteolysis	GO:0045862_positive regulation of proteolysis
+GO:0045945	1	positive regulation of transcription by RNA polymerase III	GO:0045945_positive regulation of transcription by RNA polymerase III
+GO:0046185	1	aldehyde catabolic process	GO:0046185_aldehyde catabolic process
+GO:0046209	1	nitric oxide metabolic process	GO:0046209_nitric oxide metabolic process
+GO:0046477	1	glycosylceramide catabolic process	GO:0046477_glycosylceramide catabolic process
+GO:0046498	1	S-adenosylhomocysteine metabolic process	GO:0046498_S-adenosylhomocysteine metabolic process
+GO:0046500	1	S-adenosylmethionine metabolic process	GO:0046500_S-adenosylmethionine metabolic process
+GO:0046655	1	folic acid metabolic process	GO:0046655_folic acid metabolic process
+GO:0046676	1	negative regulation of insulin secretion	GO:0046676_negative regulation of insulin secretion
+GO:0046824	1	positive regulation of nucleocytoplasmic transport	GO:0046824_positive regulation of nucleocytoplasmic transport
+GO:0046982	1	protein heterodimerization activity	GO:0046982_protein heterodimerization activity
+GO:0046983	1	protein dimerization activity	GO:0046983_protein dimerization activity
+GO:0047130	1	saccharopine dehydrogenase (NADP+, L-lysine-forming) activity	GO:0047130_saccharopine dehydrogenase (NADP+, L-lysine-forming) activity
+GO:0047131	1	saccharopine dehydrogenase (NAD+, L-glutamate-forming) activity	GO:0047131_saccharopine dehydrogenase (NAD+, L-glutamate-forming) activity
+GO:0048038	1	quinone binding	GO:0048038_quinone binding
+GO:0048471	1	perinuclear region of cytoplasm	GO:0048471_perinuclear region of cytoplasm
+GO:0048478	1	obsolete replication fork protection	GO:0048478_obsolete replication fork protection
+GO:0048545	1	response to steroid hormone	GO:0048545_response to steroid hormone
+GO:0048692	1	negative regulation of axon extension involved in regeneration	GO:0048692_negative regulation of axon extension involved in regeneration
+GO:0048935	1	peripheral nervous system neuron development	GO:0048935_peripheral nervous system neuron development
+GO:0050308	1	sugar-phosphatase activity	GO:0050308_sugar-phosphatase activity
+GO:0050661	1	NADP binding	GO:0050661_NADP binding
+GO:0050667	1	homocysteine metabolic process	GO:0050667_homocysteine metabolic process
+GO:0050679	1	positive regulation of epithelial cell proliferation	GO:0050679_positive regulation of epithelial cell proliferation
+GO:0050707	1	NA	GO:0050707_NA
+GO:0050729	1	positive regulation of inflammatory response	GO:0050729_positive regulation of inflammatory response
+GO:0050790	1	regulation of catalytic activity	GO:0050790_regulation of catalytic activity
+GO:0050805	1	negative regulation of synaptic transmission	GO:0050805_negative regulation of synaptic transmission
+GO:0050808	1	synapse organization	GO:0050808_synapse organization
+GO:0050839	1	cell adhesion molecule binding	GO:0050839_cell adhesion molecule binding
+GO:0050855	1	regulation of B cell receptor signaling pathway	GO:0050855_regulation of B cell receptor signaling pathway
+GO:0050885	1	neuromuscular process controlling balance	GO:0050885_neuromuscular process controlling balance
+GO:0050896	1	response to stimulus	GO:0050896_response to stimulus
+GO:0051028	1	mRNA transport	GO:0051028_mRNA transport
+GO:0051082	1	unfolded protein binding	GO:0051082_unfolded protein binding
+GO:0051085	1	obsolete chaperone cofactor-dependent protein refolding	GO:0051085_obsolete chaperone cofactor-dependent protein refolding
+GO:0051087	1	protein-folding chaperone binding	GO:0051087_protein-folding chaperone binding
+GO:0051091	1	positive regulation of DNA-binding transcription factor activity	GO:0051091_positive regulation of DNA-binding transcription factor activity
+GO:0051092	1	positive regulation of NF-kappaB transcription factor activity	GO:0051092_positive regulation of NF-kappaB transcription factor activity
+GO:0051225	1	spindle assembly	GO:0051225_spindle assembly
+GO:0051260	1	protein homooligomerization	GO:0051260_protein homooligomerization
+GO:0051281	1	positive regulation of release of sequestered calcium ion into cytosol	GO:0051281_positive regulation of release of sequestered calcium ion into cytosol
+GO:0051289	1	protein homotetramerization	GO:0051289_protein homotetramerization
+GO:0051291	1	protein heterooligomerization	GO:0051291_protein heterooligomerization
+GO:0051384	1	response to glucocorticoid	GO:0051384_response to glucocorticoid
+GO:0051560	1	mitochondrial calcium ion homeostasis	GO:0051560_mitochondrial calcium ion homeostasis
+GO:0051591	1	response to cAMP	GO:0051591_response to cAMP
+GO:0051592	1	response to calcium ion	GO:0051592_response to calcium ion
+GO:0051593	1	response to folic acid	GO:0051593_response to folic acid
+GO:0051603	1	proteolysis involved in protein catabolic process	GO:0051603_proteolysis involved in protein catabolic process
+GO:0051971	1	positive regulation of transmission of nerve impulse	GO:0051971_positive regulation of transmission of nerve impulse
+GO:0051990	1	(R)-2-hydroxyglutarate dehydrogenase activity	GO:0051990_(R)-2-hydroxyglutarate dehydrogenase activity
+GO:0052631	1	sphingolipid 8-(E/Z)-desaturase activity	GO:0052631_sphingolipid 8-(E/Z)-desaturase activity
+GO:0052667	1	obsolete phosphomethylethanolamine N-methyltransferase activity	GO:0052667_obsolete phosphomethylethanolamine N-methyltransferase activity
+GO:0055081	1	monoatomic anion homeostasis	GO:0055081_monoatomic anion homeostasis
+GO:0055085	1	transmembrane transport	GO:0055085_transmembrane transport
+GO:0055103	1	ligase regulator activity	GO:0055103_ligase regulator activity
+GO:0055114	1	obsolete oxidation-reduction process	GO:0055114_obsolete oxidation-reduction process
+GO:0055123	1	digestive system development	GO:0055123_digestive system development
+GO:0060271	1	cilium assembly	GO:0060271_cilium assembly
+GO:0060291	1	long-term synaptic potentiation	GO:0060291_long-term synaptic potentiation
+GO:0060416	1	response to growth hormone	GO:0060416_response to growth hormone
+GO:0060914	1	heart formation	GO:0060914_heart formation
+GO:0061061	1	muscle structure development	GO:0061061_muscle structure development
+GO:0061314	1	Notch signaling involved in heart development	GO:0061314_Notch signaling involved in heart development
+GO:0061630	1	ubiquitin protein ligase activity	GO:0061630_ubiquitin protein ligase activity
+GO:0062023	1	obsolete collagen-containing extracellular matrix	GO:0062023_obsolete collagen-containing extracellular matrix
+GO:0065003	1	protein-containing complex assembly	GO:0065003_protein-containing complex assembly
+GO:0070126	1	mitochondrial translational termination	GO:0070126_mitochondrial translational termination
+GO:0070268	1	cornification	GO:0070268_cornification
+GO:0070417	1	cellular response to cold	GO:0070417_cellular response to cold
+GO:0070530	1	K63-linked polyubiquitin modification-dependent protein binding	GO:0070530_K63-linked polyubiquitin modification-dependent protein binding
+GO:0070888	1	E-box binding	GO:0070888_E-box binding
+GO:0071230	1	cellular response to amino acid stimulus	GO:0071230_cellular response to amino acid stimulus
+GO:0071233	1	cellular response to L-leucine	GO:0071233_cellular response to L-leucine
+GO:0071276	1	cellular response to cadmium ion	GO:0071276_cellular response to cadmium ion
+GO:0071277	1	cellular response to calcium ion	GO:0071277_cellular response to calcium ion
+GO:0071377	1	cellular response to glucagon stimulus	GO:0071377_cellular response to glucagon stimulus
+GO:0071400	1	cellular response to oleic acid	GO:0071400_cellular response to oleic acid
+GO:0071425	1	hematopoietic stem cell proliferation	GO:0071425_hematopoietic stem cell proliferation
+GO:0071472	1	cellular response to salt stress	GO:0071472_cellular response to salt stress
+GO:0071548	1	response to dexamethasone	GO:0071548_response to dexamethasone
+GO:0071577	1	zinc ion transmembrane transport	GO:0071577_zinc ion transmembrane transport
+GO:0071578	1	zinc ion import across plasma membrane	GO:0071578_zinc ion import across plasma membrane
+GO:0071702	1	obsolete organic substance transport	GO:0071702_obsolete organic substance transport
+GO:0071726	1	cellular response to diacyl bacterial lipopeptide	GO:0071726_cellular response to diacyl bacterial lipopeptide
+GO:0071727	1	cellular response to triacyl bacterial lipopeptide	GO:0071727_cellular response to triacyl bacterial lipopeptide
+GO:0071805	1	potassium ion transmembrane transport	GO:0071805_potassium ion transmembrane transport
+GO:0071889	1	14-3-3 protein binding	GO:0071889_14-3-3 protein binding
+GO:0071902	1	positive regulation of protein serine/threonine kinase activity	GO:0071902_positive regulation of protein serine/threonine kinase activity
+GO:0072341	1	modified amino acid binding	GO:0072341_modified amino acid binding
+GO:0072534	1	perineuronal net	GO:0072534_perineuronal net
+GO:0072657	1	protein localization to membrane	GO:0072657_protein localization to membrane
+GO:0080101	1	obsolete phosphatidyl-N-dimethylethanolamine N-methyltransferase activity	GO:0080101_obsolete phosphatidyl-N-dimethylethanolamine N-methyltransferase activity
+GO:0086038	1	calcium:sodium antiporter activity involved in regulation of cardiac muscle cell membrane potential	GO:0086038_calcium:sodium antiporter activity involved in regulation of cardiac muscle cell membrane potential
+GO:0097224	1	obsolete sperm connecting piece	GO:0097224_obsolete sperm connecting piece
+GO:0097264	1	self proteolysis	GO:0097264_self proteolysis
+GO:0097386	1	glial cell projection	GO:0097386_glial cell projection
+GO:0098603	1	selenol Se-methyltransferase activity	GO:0098603_selenol Se-methyltransferase activity
+GO:0098685	1	Schaffer collateral - CA1 synapse	GO:0098685_Schaffer collateral - CA1 synapse
+GO:0098978	1	glutamatergic synapse	GO:0098978_glutamatergic synapse
+GO:0099093	1	calcium export from the mitochondrion	GO:0099093_calcium export from the mitochondrion
+GO:0102336	1	obsolete 3-oxo-arachidoyl-CoA synthase activity	GO:0102336_obsolete 3-oxo-arachidoyl-CoA synthase activity
+GO:0102337	1	obsolete 3-oxo-cerotoyl-CoA synthase activity	GO:0102337_obsolete 3-oxo-cerotoyl-CoA synthase activity
+GO:0102338	1	obsolete 3-oxo-lignoceronyl-CoA synthase activity	GO:0102338_obsolete 3-oxo-lignoceronyl-CoA synthase activity
+GO:0102391	1	decanoate-CoA ligase activity	GO:0102391_decanoate-CoA ligase activity
+GO:0102756	1	obsolete very-long-chain 3-ketoacyl-CoA synthase activity	GO:0102756_obsolete very-long-chain 3-ketoacyl-CoA synthase activity
+GO:0140078	1	class I DNA-(apurinic or apyrimidinic site) endonuclease activity	GO:0140078_class I DNA-(apurinic or apyrimidinic site) endonuclease activity
+GO:1900087	1	positive regulation of G1/S transition of mitotic cell cycle	GO:1900087_positive regulation of G1/S transition of mitotic cell cycle
+GO:1901052	1	sarcosine metabolic process	GO:1901052_sarcosine metabolic process
+GO:1901291	1	negative regulation of double-strand break repair via single-strand annealing	GO:1901291_negative regulation of double-strand break repair via single-strand annealing
+GO:1901623	1	regulation of lymphocyte chemotaxis	GO:1901623_regulation of lymphocyte chemotaxis
+GO:1902036	1	regulation of hematopoietic stem cell differentiation	GO:1902036_regulation of hematopoietic stem cell differentiation
+GO:1904047	1	S-adenosyl-L-methionine binding	GO:1904047_S-adenosyl-L-methionine binding
+GO:1904158	1	axonemal central apparatus assembly	GO:1904158_axonemal central apparatus assembly
+GO:1904813	1	ficolin-1-rich granule lumen	GO:1904813_ficolin-1-rich granule lumen
+GO:1990092	1	calcium-dependent self proteolysis	GO:1990092_calcium-dependent self proteolysis
+GO:1990390	1	protein K33-linked ubiquitination	GO:1990390_protein K33-linked ubiquitination
+GO:1990578	1	perinuclear endoplasmic reticulum membrane	GO:1990578_perinuclear endoplasmic reticulum membrane
+GO:1990904	1	ribonucleoprotein complex	GO:1990904_ribonucleoprotein complex
+GO:2000001	1	regulation of DNA damage checkpoint	GO:2000001_regulation of DNA damage checkpoint
+GO:2000010	1	positive regulation of protein localization to cell surface	GO:2000010_positive regulation of protein localization to cell surface
+GO:2000274	1	regulation of epithelial cell migration, open tracheal system	GO:2000274_regulation of epithelial cell migration, open tracheal system
+GO:2000810	1	regulation of bicellular tight junction assembly	GO:2000810_regulation of bicellular tight junction assembly
+GO:2000850	1	negative regulation of glucocorticoid secretion	GO:2000850_negative regulation of glucocorticoid secretion
+GO:2001256	1	regulation of store-operated calcium entry	GO:2001256_regulation of store-operated calcium entry

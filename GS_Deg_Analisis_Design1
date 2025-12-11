@@ -5,9 +5,6 @@ source("setup.R") #este comando permite acelerar la corrida del código inicial
 ## Running DESeq2
 dds<-DESeq2::DESeqDataSetFromMatrix(countData = cts, colData = coldata, design=~ Genet + SymbiontState)
 
-#Si se cambia el orden de los factores en el diseño, los resultados de la comparación cambiarán. 
-# podemos probar con: design=~SymbiontState+Genet  o  design=~SymbiontState (sin tener en cuenta el genotipo)
-
 # pre-filtering to remove low count genes 
 dim(dds) #25649
 keep <- rowSums(counts(dds)) >= 10
@@ -40,7 +37,6 @@ valState=cbind(resMF$pvalue, resMF$padj) #adjusted p values
 head(valState)
 colnames(valState)=c("pval.state", "padj.state")
 rownames(valState)<-rownames(resMF)
-
 
 # transform the data for plotting 
 rlogMF=rlogTransformation(dds, blind=TRUE) 
@@ -79,6 +75,92 @@ levels(degs$genename)
 # Si padj<0.1 Hay 140 niveles de genename (140 genes anotados diferentes)
 
 degs_plot<-filter(degs, genename!="unknown")
+
+# Convertir a data frame
+df_volc <- as.data.frame(resMF)
+df_volc$gene <- rownames(df_volc)
+
+# Eliminar NA en padj
+df_volc <- df_volc[complete.cases(df_volc$padj), ]
+
+#Volcano plot:
+
+# Unir los dataframes usando merge con las columnas correctas
+# df_volc$gene debe coincidir con degs$contig
+df_volc <- merge(df_volc, 
+                 degs[, c("contig", "genename")],
+                 by.x = "gene",      # Columna en df_volc
+                 by.y = "contig",    # Columna en degs
+                 all.x = TRUE)       # Mantener todos los genes de df_volc
+
+
+# Convertir genename de factor a character
+df_volc$genename <- as.character(df_volc$genename)
+
+print(head(df_volc[!is.na(df_volc$genename), c("gene", "genename")], 10))
+
+# Crear label: usar genename si no es NA y no es "unknown"
+df_volc$label <- ifelse(!is.na(df_volc$genename) & 
+                         df_volc$genename != "unknown",
+                       df_volc$genename,  # Ahora será el texto, no el nivel
+                       df_volc$gene)
+
+# Crear columna de significancia
+df_volc$threshold <- "NS"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange > 2] <- "Up"
+df_volc$threshold[df_volc$padj < 0.1 & df_volc$log2FoldChange < -2] <- "Down"
+
+
+
+# Filtrar genes significativos (padj < 0.1)
+res_sig <- subset(resMF, padj < 0.1)
+
+# Convertir a dataframe y agregar nombres de genes como columna
+df_sig <- as.data.frame(res_sig)
+df_sig$gene <- rownames(df_sig)
+
+# Renombrar columna para hacer merge (igual que en tu volcano plot)
+df_sig$contig <- rownames(df_sig)
+
+# Hacer merge con la información de funciones de gg
+df_sig <- merge(df_sig, 
+                degs[, c("contig", "genename")],
+                by = "contig",
+                all.x = TRUE)
+
+# Convertir genename de factor a character
+df_sig$genename <- as.character(df_sig$genename)
+
+# Si no hay anotación, poner "unknown"
+df_sig$genename[is.na(df_sig$genename)] <- "unknown"
+
+# Crear dataframe UP (LFC > 0)
+df_up <- subset(df_sig, log2FoldChange > 0)
+# Ordenar columnas: gen, función, pvalor, padj, LFC
+df_up <- df_up[, c("gene", "genename", "pvalue", "padj", "log2FoldChange")]
+colnames(df_up) <- c("Gene", "Function", "pvalue", "padj", "log2FoldChange")
+
+# Crear dataframe DOWN (LFC < 0)
+df_down <- subset(df_sig, log2FoldChange < 0)
+df_down <- df_down[, c("gene", "genename", "pvalue", "padj", "log2FoldChange")]
+colnames(df_down) <- c("Gene", "Function", "pvalue", "padj", "log2FoldChange")
+
+# Mostrar dimensiones
+cat("UP genes:", nrow(df_up), "\n")
+cat("DOWN genes:", nrow(df_down), "\n")
+
+# Ver primeros genes de cada dataframe
+head(df_up)
+head(df_down)
+
+if (!require("openxlsx")) install.packages("openxlsx")
+library(openxlsx)
+
+# Alternativa: ambos en un solo archivo Excel con pestañas diferentes
+write.xlsx(list(UP = df_up, DOWN = df_down), 
+           file = "genes_diferenciales.xlsx",
+           colNames = TRUE, rowNames = FALSE)
+
 
 #Para crear todos los gráficos de este script, se utiliza el siguiente comando:
 #source("GS_CreatePlots.R") #llama al script para crear los gráficos.
@@ -155,92 +237,127 @@ source("data/gomwu.functions.R")
 
 test <- read.table("NEW_PVals_GOWMU_Collapsed.csv", sep = "\t", header = T, check.names = F)
 
-#Biological Processes
-gomwuStats(input, goDatabase, goAnnotations, goDivision,
-           perlPath="perl",
-           largest=0.1,
-           smallest=10,   # a GO category should contain at least this many genes to be considered, was increased from default due to the large number of BP GO terms that were significant
-           clusterCutHeight=0.35  # cutoff in relatedness of GO terms to merge categories, was increased from default due to the large number of BP GO terms that were significant
-           )
+#########################################################
 
 
+#Crear un data frame con las asociaciones TérminoGO+funcion a partir del archivo .obo
+# Cargar librería útil para manejo de texto
+library(stringr)
 
+# Ruta del archivo .obo
+termID <- "data/go.obo"
 
+obo <- readLines(termID)
 
+term_start <- grep("^\\[Term\\]", obo)
+term_end <- c(term_start[-1] - 1, length(obo))
 
+ids <- c()
+names <- c()
 
-# Plotting results
-quartz()
-results_BP=gomwuPlot(input,goAnnotations,goDivision,
-                  absValue=-log(0.05,10),  # genes with the measure value exceeding this will be counted as "good genes". Specify absValue=0.001 if you are doing Fisher's exact test for standard GO enrichment or analyzing a WGCNA module (all non-zero genes = "good genes").
-                  level1=0.01, # FDR threshold for plotting. Specify level1=1 to plot all GO categories containing genes exceeding the absValue.(italic font)
-                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
-                  level3=0.00001, # FDR cutoff to print in large bold font.
-                  txtsize=0.8,    # decrease to fit more on one page, or increase (after rescaling the plot so the tree fits the text) for better "word cloud" effect
-                  treeHeight=0.4, # height of the hierarchical clustering tree
-                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
+# Recorrer cada bloque y extraer id y name
+for (i in seq_along(term_start)) {
+  
+  bloque <- obo[term_start[i]:term_end[i]]
+  
+  # Extraer id
+  id_line <- bloque[grep("^id:", bloque)]
+  id <- str_trim(sub("id:\\s*", "", id_line))
+  
+  # Extraer name
+  name_line <- bloque[grep("^name:", bloque)]
+  name <- str_trim(sub("name:\\s*", "", name_line))
+  
+  # Guardar
+  ids <- c(ids, id)
+  names <- c(names, name)
+}
+
+# Crear data frame final
+term_df <- data.frame(
+  GO_ID = ids,
+  GO_name = names,
+  stringsAsFactors = FALSE
 )
-# Fig S4
-quartz.save(file="FigS4.png",type="png", width = 8, height = 80, dpi = 300 )
-# Table S2 
-write.csv(results_BP, file="TableS2.csv", quote=TRUE, row.names = TRUE)
+
+write.table(term_df, "GO_term.txt", sep = "\t", row.names = FALSE, quote = FALSE)
 
 
-goDivision="MF" # either MF, or BP, or CC
-gomwuStats(input, goDatabase, goAnnotations, goDivision,
-           perlPath="perl",
-           largest=0.1,
-           smallest=10,
-           clusterCutHeight=0.25)
+# Data frame de las frecuencias de términos GO a partir de los degs.
+# Cargar librerías necesarias
+library(dplyr)
+library(tidyr)
 
-# Plotting results
-quartz()
-results_MF=gomwuPlot(input,goAnnotations,goDivision,
-                  absValue=-log(0.05,10),
-                  level1=0.01, # italic font
-                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
-                  level3=0.00001, # FDR cutoff to print in large bold font.
-                  txtsize=0.8,    
-                  treeHeight=0.4, 
-                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
-)
-# Fig S5
-quartz.save(file="FigS5.png",type="png", width = 8, height = 40, dpi = 300, bg="white")
-#Table S3
-write.csv(results_MF, file="TableS3.csv", quote=TRUE, row.names = TRUE)
+# Leer el archivo (ajusta el separador si es necesario)
+datos <- read.table("GS_degs_GO.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE)
 
-goDivision="CC" # either MF, or BP, or CC
+# Separar los términos GO por ";"
+go_df <- datos %>%
+  filter(Terminos_GO != "unknown") %>%              # eliminar genes sin anotación
+  separate_rows(Terminos_GO, sep = ";") %>%         # dividir cada término en filas
+  group_by(Terminos_GO) %>%                         # agrupar por término GO
+  summarise(Frecuencia = n(), .groups = "drop") %>% # contar frecuencia
+  arrange(desc(Frecuencia))                         # ordenar de mayor a menor
 
-gomwuStats(input, goDatabase, goAnnotations, goDivision,
-           perlPath="perl",
-           largest=0.1,
-           smallest=5,
-           clusterCutHeight=0.25)
+# Mostrar los primeros resultados
+head(go_df, 20)
 
-quartz()
-results_CC=gomwuPlot(input,goAnnotations,goDivision,
-                  absValue=-log(0.05,10),
-                  level1=0.01, # italic font
-                  level2=0.001, # FDR cutoff to print in regular (not italic) font.
-                  level3=0.00001, # FDR cutoff to print in large bold font.
-                  txtsize=0.8,    
-                  treeHeight=0.4, 
-                  colors=c("#35978F","#BF812D","#01665E","#8C510A") # first color is down reg, big and middle font color, then up reg big and middle font, then down italic, then up reg italic. 
-)
-# Fig S6
-quartz.save(file="FigS6.png",type="png", width = 4, height = 20, dpi = 300, bg="white")
-#Table S4
-write.csv(results_CC, file="TableS4.csv", quote=TRUE, row.names = TRUE)
+# Si quieres guardar el resultado en un archivo .txt
+write.table(go_df, "GO_frecuencias.txt", sep = "\t", row.names = FALSE, quote = FALSE)
 
 
 
 
+#Unir GO_frecuencias con GO_term para obtener nombres de funciones
+
+library(dplyr)
+
+# Suponiendo que ya tienes cargados los data frames:
+# go_df  -> con columnas Terminos_GO y Frecuencia
+# term_df -> con columnas GO_ID y GO_name
+
+# Unir ambos data frames por el identificador GO
+go_df_full <- go_df %>%
+  left_join(term_df, by = c("Terminos_GO" = "GO_ID")) %>%
+  mutate(Termino_funcion = paste(Terminos_GO, GO_name, sep = "_"))
+
+# Ver los primeros resultados
+head(go_df_full)
+
+# Guardar el resultado en un archivo si lo deseas
+write.table(go_df_full, "GO_frecuencias_con_funcion.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+
+# Preparar los datos para :
+top20 <- go_df_full %>%
+  filter(!is.na(GO_name)) %>%          # elimina los NA
+  arrange(desc(Frecuencia)) %>%
+  slice(1:20)
+
+# Crear gráfico de barras horizontal
+p <- ggplot(top20, aes(x = Frecuencia, y = reorder(GO_name, Frecuencia))) +
+  geom_bar(stat = "identity", fill = "steelblue", width = 0.5) +
+  labs(
+    title = "Top 20 términos GO más frecuentes",
+    x = "Frecuencia",
+    y = "Función asociada"
+  ) +
+    theme_minimal(base_size = 12) +
+  theme(
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20),
+    axis.title.x = element_text(size = 25, face = "bold"),  # tamaño título eje X
+    axis.title.y = element_text(size = 25, face = "bold"),  # tamaño título eje Y
+    plot.title = element_text(hjust = 0.5, size = 30, face = "bold")
+  )
+
+# Ajustar el ancho de la imagen al guardar
+ggsave("GO_top20.png", plot = p, width = 20, height = 8, dpi = 300)
 
 
 
-
-
-
+# Colapsar degs con GO y 
+df_down 
+df_up 
 
 
 # nolint end
